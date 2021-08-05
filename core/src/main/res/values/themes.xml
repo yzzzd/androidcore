@@ -1,0 +1,36 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="CustomProgressBar" />
+
+    <style name="CustomCardView" parent="android:Widget.TextView">
+        <item name="android:outlineSpotShadowColor" tools:targetApi="p">@color/card_shadow</item>
+        <item name="cardBackgroundColor">@color/card_enabled</item>
+        <item name="cardCornerRadius">@dimen/card_corner_radius</item>
+        <item name="cardElevation">@dimen/card_elevation</item>
+        <item name="cardMaxElevation">@dimen/card_elevation</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="android:foreground">@drawable/background_card</item>
+    </style>
+
+    <style name="BottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <!-- set the rounded drawable as background to your bottom sheet -->
+    <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/background_dialog</item>
+    </style>
+
+    <style name="DialogButton" parent="android:Widget.Material.Light.Button.Borderless">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">38dp</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:paddingLeft">24dp</item>
+        <item name="android:paddingRight">24dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+</resources>

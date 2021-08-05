@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_smallest">10dp</dimen>
+    <dimen name="text_small">12dp</dimen>
+    <dimen name="text_default">14dp</dimen>
+    <dimen name="text_medium">16dp</dimen>
+    <dimen name="text_large">18dp</dimen>
+    <dimen name="text_xlarge">20dp</dimen>
+    <dimen name="text_xxlarge">22dp</dimen>
+    <dimen name="text_xxxlarge">24dp</dimen>
+
+    <dimen name="card_corner_radius">8dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="card_elevation_dis">1dp</dimen>
+</resources>
