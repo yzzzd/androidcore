@@ -96,7 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Reprime Mobile membutuhkan akses kamera Anda untuk mengambil foto wajah (fitur pencocokan wajah)."
+            android:text="Aplikasi membutuhkan akses kamera Anda untuk mengambil foto."
             android:textColor="@color/text_default"
             android:textSize="@dimen/text_small" />
 
@@ -104,7 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Reprime Mobile membutuhkan akses penyimpanan perangkat Anda untuk menyimpan atau mengolah hasil capture foto."
+            android:text="Aplikasi membutuhkan akses penyimpanan perangkat Anda untuk menyimpan atau mengolah hasil capture foto."
             android:textColor="@color/text_default"
             android:textSize="@dimen/text_small" />
 

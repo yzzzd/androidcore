@@ -10,6 +10,6 @@
     <string name="cr_error_session_expired">Your session has been expired</string>
     <string name="cr_error_session_expired_dialog">In order to keep your account safe, we periodically check to see if you\'re still here. You can stay logged in by clicking bellow.</string>
     <string name="cr_error_ups">Ups…</string>
-    <string name="cr_info_permission_camera">Ijin Akses Kamera dibutuhkan agar semua fitur Reprime Mobile dapat berjalan dengan optimal.</string>
-    <string name="cr_info_permission_location">Reprime Mobile membutuhkan ijin akses lokasi perangkat sepanjang waktu untuk dapat berjalan secara optimal.</string>
+    <string name="cr_info_permission_camera">Ijin Akses Kamera dibutuhkan agar semua fitur Aplikasi dapat berjalan dengan optimal.</string>
+    <string name="cr_info_permission_location">Aplikasi membutuhkan ijin akses lokasi perangkat sepanjang waktu untuk dapat berjalan secara optimal.</string>
 </resources>

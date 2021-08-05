@@ -95,7 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Reprime Mobile menggunakan data lokasi Anda untuk kebutuhan fitur geo fencing ketika melakukan aktivitas absensi. Akses lokasi juga dibutuhkan untuk geo tagging lokasi laporan kerja."
+            android:text="Aplikasi menggunakan data lokasi Anda untuk kebutuhan fitur geo fencing. Akses lokasi juga dibutuhkan untuk geo tagging lokasi."
             android:textColor="@color/text_default"
             android:textSize="@dimen/text_small" />
 
@@ -103,7 +103,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Reprime Mobile tidak akan mengambil lokasi Anda saat aplikasi tidak digunakan."
+            android:text="Aplikasi tidak akan mengambil lokasi Anda saat aplikasi tidak digunakan."
             android:textColor="@color/text_default"
             android:textSize="@dimen/text_small" />
 

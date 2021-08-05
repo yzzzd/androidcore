@@ -31,13 +31,13 @@
                     android:gravity="center_vertical"
                     android:maxLines="2"
                     android:text="Title"
-                    android:textColor="@color/text_hint"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/text_default" />
 
                 <View
                     android:layout_width="8dp"
                     android:layout_height="8dp"
-                    android:background="@drawable/red_circle" />
+                    android:background="@drawable/cr_red_circle" />
 
             </LinearLayout>
 
