@@ -9,7 +9,7 @@ import com.crocodic.core.extension.encrypt
  * Created by nuryazid on 4/21/18.
  */
 
-open class BaseSession(context: Context) {
+open class CoreSession(context: Context) {
 
     var PREF_NAME = "_core_"
     var PREF_FCMID = "fcm_id".encrypt()

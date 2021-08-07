@@ -13,7 +13,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 abstract class CoreDialog<VB : ViewBinding>(val context: Context) {
 
     protected var binding: VB
-    private var dialog: BottomSheetDialog = BottomSheetDialog(context, R.style.BottomSheetDialog)
+    protected var dialog: BottomSheetDialog = BottomSheetDialog(context, R.style.BottomSheetDialog)
 
     protected abstract fun getViewBinding(): VB
 
