@@ -8,6 +8,10 @@ import androidx.databinding.DataBindingUtil
 import com.crocodic.core.R
 import com.crocodic.core.databinding.ItemBottomListBinding
 
+/**
+ * Created by @yzzzd on 4/22/18.
+ */
+
 class BaseBottomListAdapter<T: Any?>(val items: List<T?>, val onItemClick: (data: T?) -> Unit) : BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {

@@ -7,7 +7,7 @@ import androidx.annotation.StringRes
 import com.crocodic.core.databinding.CrDialogAlertBinding
 
 /**
- * Created by nuryazid on 4/20/18.
+ * Created by @yzzzd on 4/22/18.
  */
 
 class AlertDialog(context: Context, onButtonClick: (positive: Boolean, dialog: AlertDialog) -> Unit) : CoreDialog<CrDialogAlertBinding>(context) {

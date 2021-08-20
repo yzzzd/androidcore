@@ -1,11 +1,14 @@
 package com.crocodic.core.helper
 
-import com.crocodic.core.extension.encrypt
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
+
+/**
+ * Created by @yzzzd on 4/22/18.
+ */
 
 class DateTimeHelper(private val currentLocale: Locale = Locale.US) {
 
@@ -13,8 +16,6 @@ class DateTimeHelper(private val currentLocale: Locale = Locale.US) {
         val localeID = Locale("id", "ID")
         val localeUS = Locale.US
     }
-
-    fun secret(iv: String) = "${createAt()}|reprime2021attendance".encrypt(iv)
 
     fun createAt(): String {
         val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", currentLocale)

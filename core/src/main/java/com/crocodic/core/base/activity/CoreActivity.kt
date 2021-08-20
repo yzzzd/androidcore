@@ -6,6 +6,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.crocodic.core.base.viewmodel.CoreViewModel
 import java.lang.reflect.ParameterizedType
 
+/**
+ * Created by @yzzzd on 4/22/18.
+ */
+
 abstract class CoreActivity<VB : ViewDataBinding, VM : CoreViewModel> : NoViewModelActivity<VB>() {
 
     protected lateinit var viewModel: VM

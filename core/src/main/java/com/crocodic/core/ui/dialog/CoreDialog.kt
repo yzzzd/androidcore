@@ -7,7 +7,7 @@ import com.crocodic.core.R
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 /**
- * Created by nuryazid on 4/20/18.
+ * Created by @yzzzd on 4/22/18.
  */
 
 abstract class CoreDialog<VB : ViewBinding>(val context: Context) {

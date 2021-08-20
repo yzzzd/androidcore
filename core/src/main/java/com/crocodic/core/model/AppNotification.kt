@@ -3,6 +3,10 @@ package com.crocodic.core.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
+/**
+ * Created by @yzzzd on 4/22/18.
+ */
+
 data class AppNotification (
     @Expose
     @SerializedName("title")

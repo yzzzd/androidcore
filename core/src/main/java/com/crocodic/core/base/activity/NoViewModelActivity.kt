@@ -24,10 +24,12 @@ import androidx.databinding.ViewDataBinding
 import com.crocodic.core.R
 import com.crocodic.core.api.ApiResponse
 import com.crocodic.core.api.ApiStatus
-import com.crocodic.core.data.EventBusModel
-import com.crocodic.core.extension.*
-import com.crocodic.core.helper.ClickPrevention
-import com.crocodic.core.helper.Logg
+import com.crocodic.core.data.model.LocationState
+import com.crocodic.core.extension.checkEnabledLocation
+import com.crocodic.core.extension.checkLocationPermission
+import com.crocodic.core.extension.notify
+import com.crocodic.core.extension.pop
+import com.crocodic.core.helper.util.ClickPrevention
 import com.crocodic.core.model.AppNotification
 import com.crocodic.core.ui.dialog.ExpiredDialog
 import com.crocodic.core.ui.dialog.InformationDialog
@@ -35,6 +37,10 @@ import com.crocodic.core.ui.dialog.LoadingDialog
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+
+/**
+ * Created by @yzzzd on 4/22/18.
+ */
 
 abstract class NoViewModelActivity<VB : ViewDataBinding> : AppCompatActivity(), ClickPrevention {
 
@@ -127,9 +133,8 @@ abstract class NoViewModelActivity<VB : ViewDataBinding> : AppCompatActivity(), 
         locationListener = object : LocationListener {
 
             override fun onLocationChanged(location: Location) {
-                Logg.d(log = "Location changed ${location.accuracy}")
                 retrieveLocationChange(location)
-                EventBus.getDefault().post(EventBusModel.LocationFake(location.isFromMockProvider))
+                EventBus.getDefault().post(LocationState.LocationFake(location.isFromMockProvider))
             }
 
             override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {
@@ -138,12 +143,12 @@ abstract class NoViewModelActivity<VB : ViewDataBinding> : AppCompatActivity(), 
 
             override fun onProviderEnabled(provider: String) {
                 //Logg.d(log = "status location enabled $provider")
-                EventBus.getDefault().post(EventBusModel.LocationState(true))
+                EventBus.getDefault().post(LocationState.LocationState(true))
             }
 
             override fun onProviderDisabled(provider: String) {
                 //Logg.d(log = "status location disable $provider")
-                EventBus.getDefault().post(EventBusModel.LocationState(false))
+                EventBus.getDefault().post(LocationState.LocationState(false))
             }
         }
 
@@ -161,7 +166,6 @@ abstract class NoViewModelActivity<VB : ViewDataBinding> : AppCompatActivity(), 
         }
         // Register the listener with the Location Manager to receive location updates
         locationListener?.let { locationManager?.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0f, it) }
-        Logg.d(log = "start location manager")
     }
 
     //region lifecycle
@@ -210,7 +214,7 @@ abstract class NoViewModelActivity<VB : ViewDataBinding> : AppCompatActivity(), 
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(event: EventBusModel.LocationState) {
+    fun onMessageEvent(event: LocationState.LocationState) {
         if (event.enabled) {
             informationDialog.dismiss()
         } else {
@@ -219,7 +223,7 @@ abstract class NoViewModelActivity<VB : ViewDataBinding> : AppCompatActivity(), 
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(event: EventBusModel.LocationFake) {
+    fun onMessageEvent(event: LocationState.LocationFake) {
         if (event.enabled) {
             informationDialog.setMessage(R.string.cr_error_ups, R.string.cr_error_please_disable_mock, R.drawable.img_gps_fake).showButton(true).show()
         } else {

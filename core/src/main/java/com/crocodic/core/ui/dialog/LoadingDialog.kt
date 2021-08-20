@@ -9,7 +9,7 @@ import com.crocodic.core.R
 import com.crocodic.core.databinding.DialogLoadingBinding
 
 /**
- * Created by nuryazid on 4/20/18.
+ * Created by @yzzzd on 4/22/18.
  */
 
 class LoadingDialog(context: Context): CoreDialog<DialogLoadingBinding>(context) {

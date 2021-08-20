@@ -1,6 +1,10 @@
-package com.crocodic.core.data
+package com.crocodic.core.data.model
 
-class EventBusModel {
+/**
+ * Created by @yzzzd on 4/22/18.
+ */
+
+class LocationState {
     class LocationState(val enabled: Boolean = false)
     class LocationFake(val enabled: Boolean = false)
 }

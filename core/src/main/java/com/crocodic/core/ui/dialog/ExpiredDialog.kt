@@ -6,7 +6,7 @@ import android.view.View
 import com.crocodic.core.databinding.DialogExpiredBinding
 
 /**
- * Created by nuryazid on 4/20/18.
+ * Created by @yzzzd on 4/22/18.
  */
 
 class ExpiredDialog(context: Context, onButtonClick: (positive: Boolean, dialog: ExpiredDialog) -> Unit) : CoreDialog<DialogExpiredBinding>(context) {

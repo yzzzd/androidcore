@@ -13,11 +13,15 @@ import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.crocodic.core.R
 import com.crocodic.core.aes.Crypt
-import com.crocodic.core.helper.Dpx
 import com.crocodic.core.helper.ImagePreviewHelper
 import com.crocodic.core.helper.StringHelper
 import com.crocodic.core.helper.list.EndlessScrollListener
+import com.crocodic.core.helper.util.Dpx
 import com.google.android.material.snackbar.Snackbar
+
+/**
+ * Created by @yzzzd on 4/22/18.
+ */
 
 fun String.encrypt(secret: String? = null) = if (secret.isNullOrEmpty()) Crypt.aesEncrypt(this) else Crypt.aesEncrypt(this, secret)
 
@@ -46,7 +50,7 @@ fun EditText.isEmptyRequired(@StringRes message: Int): Boolean {
 }
 
 fun TextView.text(value: String?) {
-    this.text = StringHelper().validateEmpty(value)
+    this.text = StringHelper.validateEmpty(value)
 }
 
 fun TextView.textOf() = this.text.toString().trim()

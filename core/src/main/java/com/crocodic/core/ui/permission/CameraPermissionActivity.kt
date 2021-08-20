@@ -13,14 +13,16 @@ import androidx.core.app.ActivityCompat
 import com.crocodic.core.R
 import com.crocodic.core.databinding.CrActivityPermissionCameraBinding
 import com.crocodic.core.extension.allPermissionsGranted
-import com.crocodic.core.helper.ClickPrevention
+import com.crocodic.core.helper.util.ClickPrevention
 import com.crocodic.core.ui.dialog.PermissionSettingDialog
+
+/**
+ * Created by @yzzzd on 4/22/18.
+ */
 
 class CameraPermissionActivity : AppCompatActivity(), ClickPrevention {
 
     private var binding: CrActivityPermissionCameraBinding? = null
-
-    private var withFile: Boolean? = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,20 +30,18 @@ class CameraPermissionActivity : AppCompatActivity(), ClickPrevention {
         binding = CrActivityPermissionCameraBinding.inflate(layoutInflater)
         binding?.let { setContentView(it.root) }
 
-        withFile = intent?.getBooleanExtra(CONTENT, false)
-
         setResult(RESULT)
         binding?.buttonPositive?.setOnClickListener(this)
         binding?.buttonNegative?.setOnClickListener(this)
     }
 
     private fun checkPermission() {
-        val granted = allPermissionsGranted(if (withFile == true) REQUIRED_PERMISSIONS_CAMERA_FILE else REQUIRED_PERMISSIONS_CAMERA)
+        val granted = allPermissionsGranted(REQUIRED_PERMISSIONS_CAMERA)
 
         if (granted) {
             finish()
         } else {
-            ActivityCompat.requestPermissions(this, if (withFile == true) REQUIRED_PERMISSIONS_CAMERA_FILE else REQUIRED_PERMISSIONS_CAMERA, REQUEST)
+            ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS_CAMERA, REQUEST)
         }
     }
 
@@ -56,7 +56,7 @@ class CameraPermissionActivity : AppCompatActivity(), ClickPrevention {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST) {
-            if (allPermissionsGranted(if (withFile == true) REQUIRED_PERMISSIONS_CAMERA_FILE else REQUIRED_PERMISSIONS_CAMERA)) {
+            if (allPermissionsGranted(REQUIRED_PERMISSIONS_CAMERA)) {
                 finish()
             } else {
                 PermissionSettingDialog(this)
@@ -86,6 +86,5 @@ class CameraPermissionActivity : AppCompatActivity(), ClickPrevention {
         const val REQUEST = 602
         const val RESULT = 702
         private val REQUIRED_PERMISSIONS_CAMERA = arrayOf(Manifest.permission.CAMERA)
-        private val REQUIRED_PERMISSIONS_CAMERA_FILE = arrayOf(Manifest.permission.CAMERA)
     }
 }

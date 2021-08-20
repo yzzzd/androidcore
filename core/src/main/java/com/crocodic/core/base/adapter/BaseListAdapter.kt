@@ -9,7 +9,7 @@ import com.crocodic.core.BR
 import com.crocodic.core.R
 
 /**
- * Created by nuryazid on 4/19/18.
+ * Created by @yzzzd on 4/19/18.
  */
 
 open class BaseListAdapter<VB: ViewDataBinding, T: Any?>(private var layoutRes: Int) : RecyclerView.Adapter<BaseListAdapter.ItemViewHolder<VB, T>>() {

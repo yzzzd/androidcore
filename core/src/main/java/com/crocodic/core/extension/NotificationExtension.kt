@@ -13,6 +13,10 @@ import androidx.core.content.pm.ShortcutManagerCompat
 import com.crocodic.core.model.AppNotification
 import org.greenrobot.eventbus.EventBus
 
+/**
+ * Created by @yzzzd on 4/22/18.
+ */
+
 /* clear all pendign notification which not yet opened */
 fun Activity.clearNotification() {
     val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager

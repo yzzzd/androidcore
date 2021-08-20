@@ -1,9 +1,13 @@
-package com.crocodic.core.helper
+package com.crocodic.core.helper.log
 
 import android.util.Log
 import com.crocodic.core.BuildConfig
 
-object Logg {
+/**
+ * Created by @yzzzd on 4/22/18.
+ */
+
+object Log {
     val dev = BuildConfig.DEBUG
 
     fun i(log: String, tag: String = BuildConfig.LIBRARY_PACKAGE_NAME) {

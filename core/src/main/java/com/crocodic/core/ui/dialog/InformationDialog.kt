@@ -8,7 +8,7 @@ import androidx.annotation.StringRes
 import com.crocodic.core.databinding.DialogInformationBinding
 
 /**
- * Created by nuryazid on 4/20/18.
+ * Created by @yzzzd on 4/22/18.
  */
 
 class InformationDialog(context: Context): CoreDialog<DialogInformationBinding>(context) {

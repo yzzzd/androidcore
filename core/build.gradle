@@ -42,72 +42,74 @@ dependencies {
 
     api deps.app_compat
     api deps.constraint_layout
+    api deps.crypto
+    api deps.exifinterface
     api deps.kotlin.stdlib
     api deps.material
     api deps.recyclerview
     api deps.swiperefreshlayout
 
-    /*Alerter*/
+    /* Alerter */
     api deps.alerter
 
     /*CameraX core library using camera2 api*/
-    api deps.camerax.runtime
-    api deps.camerax.runtime_lifecycle
-    api deps.camerax.view
+    // api deps.camerax.runtime
+    // api deps.camerax.runtime_lifecycle
+    // api deps.camerax.view
 
-    /*Compress Image*/
+    /* Compress Image */
     api deps.compressor
 
-    /*KTX*/
+    /* KTX */
     api deps.core_ktx
     api deps.fragment.runtime_ktx
 
-    /*EventBus*/
+    /* EventBus */
     api deps.eventbus
 
-    /*Firebase*/
+    /* Firebase */
     api deps.firebase.runtime
     api deps.firebase.messaging
     api deps.firebase.crashlytics
     api deps.firebase.perf
 
-    /*ImagePreview*/
+    /* ImagePreview */
     api deps.image_preview
 
-    /*Glide*/
+    /* Glide */
     api deps.glide.runtime
     kapt deps.glide.runtime_compiler
     api (deps.glide.integration) {
         exclude group: 'glide-parent'
     }
 
-    /*Gson*/
+    /* Gson */
     api deps.gson
 
-    /*Lifecycle*/
+    /* Lifecycle */
     api deps.lifecycle.viewmodel
 
-    /*Retrofit*/
+    /* Retrofit */
     api deps.retrofit.adapter
     api deps.retrofit.gson
     api deps.retrofit.interceptor
     api deps.retrofit.runtime
     api deps.retrofit.scalars
 
-    /*Room*/
+    /* Room */
     api deps.room.runtime
     api deps.room.runtime_ktx
     kapt deps.room.runtime_compiler
 
-    /*GMS*/
+    /* GMS */
     api deps.gms.location
     api deps.gms.maps
     api deps.gms.maps_utils
 
-    /*Rx*/
+    /* Rx */
     api deps.rxjava
 
-    /*Base64 Crypt*/
+    /* Base64 Crypt */
     api group: 'commons-codec', name: 'commons-codec', version: '1.10'
 
     testImplementation deps.junit.runtime

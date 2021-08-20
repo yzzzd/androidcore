@@ -3,11 +3,13 @@ package com.crocodic.core.helper
 import android.content.Context
 import android.widget.ImageView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.crocodic.core.R
 import com.crocodic.core.extension.isUrl
 import com.stfalcon.imageviewer.StfalconImageViewer
 import java.io.File
+
+/**
+ * Created by @yzzzd on 4/22/18.
+ */
 
 class ImagePreviewHelper(private val context: Context) {
     fun show(imageView: ImageView, image: String?) {

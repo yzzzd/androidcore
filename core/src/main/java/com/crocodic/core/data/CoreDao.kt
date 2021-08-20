@@ -5,6 +5,10 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Update
 
+/**
+ * Created by @yzzzd on 4/22/18.
+ */
+
 interface CoreDao<T> {
     /**
      * Insert an object in the database.

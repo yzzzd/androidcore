@@ -1,6 +1,10 @@
-package com.crocodic.core.helper
+package com.crocodic.core.helper.util
 
 import android.view.View
+
+/**
+ * Created by @yzzzd on 4/22/18.
+ */
 
 interface ClickPrevention : View.OnClickListener {
     override fun onClick(v: View?) {

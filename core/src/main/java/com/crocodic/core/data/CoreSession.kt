@@ -2,32 +2,40 @@ package com.crocodic.core.data
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.crocodic.core.extension.decrypt
-import com.crocodic.core.extension.encrypt
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKey
 
 /**
- * Created by nuryazid on 4/21/18.
+ * Created by @yzzzd on 4/22/18.
  */
 
 open class CoreSession(context: Context) {
 
-    var PREF_NAME = "_core_"
-    var PREF_FCMID = "fcm_id".encrypt()
-    var PREF_UID = "user_id".encrypt()
+    companion object {
+        const val PREF_NAME = "_core_"
+        const val PREF_FCMID = "fcm_id"
+        const val PREF_UID = "user_id"
+    }
 
-    private var pref: SharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+    private val masterKey = MasterKey.Builder(context)
+        .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
+        .build()
 
-    fun setValue(key: String, value: String?) {
+    //private var pref: SharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+    private var pref: SharedPreferences = EncryptedSharedPreferences.create(context,
+        PREF_NAME,
+        masterKey,
+        EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+        EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+    )
+
+    fun setValue(key: String, value: String) {
         val editor = pref.edit()
-        if (value.isNullOrEmpty()) {
-            editor?.putString(key, value)
-        } else {
-            editor?.putString(key, value.encrypt())
-        }
+        editor?.putString(key, value)
         editor?.apply()
     }
 
-    fun setValue(key: String, value: Boolean = true) {
+    fun setValue(key: String, value: Boolean) {
         val editor = pref.edit()
         editor?.putBoolean(key, value)
         editor?.apply()
@@ -50,13 +58,7 @@ open class CoreSession(context: Context) {
     }
 
     fun getString(key: String): String {
-        val valueSrc = pref.getString(key, "") ?: ""
-
-        return if (valueSrc.isEmpty()) {
-            valueSrc
-        } else {
-            valueSrc.decrypt()
-        }
+        return pref.getString(key, "") ?: ""
     }
 
     fun getInt(key: String): Int {

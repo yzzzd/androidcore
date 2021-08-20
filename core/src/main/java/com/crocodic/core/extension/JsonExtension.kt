@@ -5,6 +5,10 @@ import com.google.gson.reflect.TypeToken
 import org.json.JSONArray
 import org.json.JSONObject
 
+/**
+ * Created by @yzzzd on 4/22/18.
+ */
+
 inline fun <reified T> JSONObject.toObject(gson: Gson): T {
     return gson.fromJson(this.toString(), T::class.java)
 }

@@ -6,7 +6,11 @@ import com.crocodic.core.widget.textdrawable.TextDrawable
 import java.text.DecimalFormat
 import java.util.*
 
-class StringHelper {
+/**
+ * Created by @yzzzd on 4/22/18.
+ */
+
+object StringHelper {
 
     val currentLocale = Locale.US
 

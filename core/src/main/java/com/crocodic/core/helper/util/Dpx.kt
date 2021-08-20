@@ -1,9 +1,9 @@
-package com.crocodic.core.helper
+package com.crocodic.core.helper.util
 
 import android.content.res.Resources
 
 /**
- * Created by @yzzzd on 11/30/17 10:05 AM.
+ * Created by @yzzzd on 11/30/17.
  */
 
 object Dpx {

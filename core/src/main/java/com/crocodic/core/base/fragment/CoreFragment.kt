@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import com.crocodic.core.helper.ClickPrevention
 import com.crocodic.core.helper.ImagePreviewHelper
+import com.crocodic.core.helper.util.ClickPrevention
 
 abstract class CoreFragment<VB : ViewDataBinding>: Fragment(), ClickPrevention {
 

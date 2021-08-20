@@ -19,7 +19,6 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.core.util.Pair
 import androidx.core.view.WindowCompat
-import androidx.fragment.app.FragmentActivity
 import com.crocodic.core.R
 import com.crocodic.core.base.activity.NoViewModelActivity
 import com.crocodic.core.databinding.CrSnackbarBinding
@@ -33,6 +32,10 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.LocationSettingsRequest
 import com.google.android.gms.location.LocationSettingsStatusCodes
 import com.tapadoo.alerter.Alerter
+
+/**
+ * Created by @yzzzd on 4/22/18.
+ */
 
 fun Context.pop(message: Int) {
     val binding = CrSnackbarBinding.inflate(LayoutInflater.from(this))
@@ -115,17 +118,13 @@ fun Activity.allPermissionsGranted(permission: Array<String>): Boolean {
 }
 
 /* To check camera permission */
-fun NoViewModelActivity<*>.checkCameraPermission(exit: Boolean, file: Boolean = false, onComplete: () -> Unit) {
-    val REQUIRED_PERMISSIONS_CAMERA_FILE = arrayOf(Manifest.permission.CAMERA)
+fun NoViewModelActivity<*>.checkCameraPermission(exit: Boolean, onComplete: () -> Unit) {
     val REQUIRED_PERMISSIONS_CAMERA = arrayOf(Manifest.permission.CAMERA)
-
-    if (allPermissionsGranted(if (file) REQUIRED_PERMISSIONS_CAMERA_FILE else REQUIRED_PERMISSIONS_CAMERA)) {
+    if (allPermissionsGranted(REQUIRED_PERMISSIONS_CAMERA)) {
         onComplete()
     } else {
-        activityLauncher.launch(createIntent<CameraPermissionActivity>{
-            putExtra(CameraPermissionActivity.CONTENT, file)
-        }) {
-            if (allPermissionsGranted(if (file) REQUIRED_PERMISSIONS_CAMERA_FILE else REQUIRED_PERMISSIONS_CAMERA)) {
+        activityLauncher.launch(createIntent<CameraPermissionActivity>()) {
+            if (allPermissionsGranted(REQUIRED_PERMISSIONS_CAMERA)) {
                 onComplete()
             } else {
                 pop(R.string.cr_error_permission_denied)

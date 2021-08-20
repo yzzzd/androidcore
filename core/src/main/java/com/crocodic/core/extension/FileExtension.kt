@@ -9,6 +9,10 @@ import id.zelory.compressor.constraint.resolution
 import id.zelory.compressor.constraint.size
 import java.io.File
 
+/**
+ * Created by @yzzzd on 4/22/18.
+ */
+
 suspend fun File.compress(context: Context, prefWidth: Int, prefHeight: Int, prefSize: Long): File {
     return Compressor.compress(context, this) {
         resolution(prefWidth, prefHeight)

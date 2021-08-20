@@ -4,6 +4,10 @@ import io.reactivex.observers.DisposableSingleObserver
 import org.greenrobot.eventbus.EventBus
 import org.json.JSONObject
 
+/**
+ * Created by @yzzzd on 4/22/18.
+ */
+
 open class ApiObserver(private val isToast: Boolean = false): DisposableSingleObserver<String>() {
     override fun onSuccess(t: String) {
         if (isToast) {

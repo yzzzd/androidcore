@@ -1,5 +1,9 @@
 package com.crocodic.core.api
 
+/**
+ * Created by @yzzzd on 4/22/18.
+ */
+
 class ApiCode {
     companion object {
         const val SUCCESS = 200

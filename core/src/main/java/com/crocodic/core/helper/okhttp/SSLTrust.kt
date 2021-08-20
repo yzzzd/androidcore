@@ -1,5 +1,10 @@
 package com.crocodic.core.helper.okhttp
 
+import okhttp3.CertificatePinner
+import okhttp3.Headers
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okio.Buffer
 import java.io.IOException
 import java.io.InputStream
 import java.security.GeneralSecurityException
@@ -8,18 +13,8 @@ import java.security.cert.Certificate
 import java.security.cert.CertificateException
 import java.security.cert.CertificateFactory
 import java.security.cert.X509Certificate
-import java.util.Arrays
-import javax.net.ssl.KeyManagerFactory
-import javax.net.ssl.SSLContext
-import javax.net.ssl.SSLSocketFactory
-import javax.net.ssl.TrustManager
-import javax.net.ssl.TrustManagerFactory
-import javax.net.ssl.X509TrustManager
-import okhttp3.CertificatePinner
-import okhttp3.Headers
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okio.Buffer
+import java.util.*
+import javax.net.ssl.*
 
 /*
  * Copyright (C) 2015 Square, Inc.

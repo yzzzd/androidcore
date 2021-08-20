@@ -6,10 +6,6 @@ import android.graphics.drawable.shapes.OvalShape
 import android.graphics.drawable.shapes.RectShape
 import android.graphics.drawable.shapes.RoundRectShape
 
-/**
- * Created by nuryazid on 4/22/18.
- */
-
 class TextDrawable private constructor(builder: Builder) : ShapeDrawable(builder.shape) {
 
     private val textPaint: Paint

@@ -7,6 +7,10 @@ import org.json.JSONObject
 import retrofit2.HttpException
 import java.net.UnknownHostException
 
+/**
+ * Created by @yzzzd on 4/22/18.
+ */
+
 open class ApiResponse(
 
     @Expose

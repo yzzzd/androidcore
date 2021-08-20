@@ -12,8 +12,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.crocodic.core.R
 import com.crocodic.core.databinding.CrActivityPermissionLocationBinding
 import com.crocodic.core.extension.allPermissionsGranted
-import com.crocodic.core.helper.ClickPrevention
+import com.crocodic.core.helper.util.ClickPrevention
 import com.crocodic.core.ui.dialog.PermissionSettingDialog
+
+/**
+ * Created by @yzzzd on 4/22/18.
+ */
 
 class LocationPermissionActivity : AppCompatActivity(), ClickPrevention {
 

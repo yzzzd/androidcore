@@ -6,6 +6,10 @@ import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
+/**
+ * Created by @yzzzd on 4/22/18.
+ */
+
 object Crypt {
     @JvmStatic
     fun aesEncrypt(v: String, secretKey: String = iv) = AES256.encrypt(v, secretKey)
