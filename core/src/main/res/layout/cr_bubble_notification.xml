@@ -49,7 +49,7 @@
                 android:ellipsize="end"
                 android:maxLines="5"
                 android:text="This is notification body that show the important information"
-                android:textColor="@color/text_default"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/text_small" />
 
         </LinearLayout>

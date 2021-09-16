@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="card_disabled">#E4E4E4</color>
+    <color name="card_enabled">#FFFFFF</color>
+    <color name="card_selected">#80CADFFE</color>
+    <color name="card_shadow">#64000000</color>
+    <color name="colorAccent">#498EFF</color>
     <color name="colorPrimary">#394683</color>
     <color name="colorPrimaryDark">#1F2B65</color>
-    <color name="colorAccent">#498EFF</color>
-
+    <color name="placeholder">#E3E3E3</color>
+    <color name="text_button_main">#FFFFFF</color>
+    <color name="text_button_secondary">#8F9CAF</color>
     <color name="text_default">#1F3775</color>
+    <color name="text_default_toast">#FFFFFF</color>
     <color name="text_gray">#8F9CAF</color>
     <color name="text_hint">#498EFF</color>
-    <color name="txt_red">#FF6060</color>
+    <color name="text_red">#CD1430</color>
     <color name="txt_green">#00B458</color>
-
-    <color name="card_shadow">#64000000</color>
-    <color name="card_enabled">#FFFFFF</color>
-    <color name="card_disabled">#E4E4E4</color>
-    <color name="card_selected">#80CADFFE</color>
+    <color name="txt_red">#FF6060</color>
 </resources>

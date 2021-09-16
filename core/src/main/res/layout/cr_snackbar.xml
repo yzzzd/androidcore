@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:text="Sampel toast message"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/text_default_toast"
         android:textSize="@dimen/text_default" />
 
 </FrameLayout>

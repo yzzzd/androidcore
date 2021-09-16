@@ -9,8 +9,7 @@ import com.crocodic.core.base.fragment.CoreFragment
  * Created by @yzzzd on 4/22/18.
  */
 
-@Deprecated("Akan diganti dengan CorePagerAdapter")
-class BasePagerAdapter<T : ViewDataBinding>(fa: FragmentActivity, private val fragments: List<CoreFragment<T>>) : FragmentStateAdapter(fa) {
+class CorePagerAdapter<T : ViewDataBinding>(fa: FragmentActivity, private val fragments: List<CoreFragment<T>>) : FragmentStateAdapter(fa) {
     override fun getItemCount() = fragments.size
     override fun createFragment(position: Int) = fragments[position]
 }

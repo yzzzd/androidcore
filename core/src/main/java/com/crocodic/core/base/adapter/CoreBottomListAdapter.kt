@@ -12,8 +12,7 @@ import com.crocodic.core.databinding.ItemBottomListBinding
  * Created by @yzzzd on 4/22/18.
  */
 
-@Deprecated("Akan diganti dengan CoreBottomListAdapter")
-class BaseBottomListAdapter<T: Any?>(val items: List<T?>, val onItemClick: (data: T?) -> Unit) : BaseAdapter() {
+class CoreBottomListAdapter<T: Any?>(val items: List<T?>, val onItemClick: (data: T?) -> Unit) : BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 

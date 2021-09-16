@@ -55,7 +55,7 @@ fun TextView.text(value: String?) {
 
 fun TextView.textOf() = this.text.toString().trim()
 
-fun View.snack(message: String, duration: Int = Snackbar.LENGTH_LONG, @StringRes action: Int? = null, listener: View.OnClickListener? = null) {
+fun View.snack(message: String, anchor: View? = null, duration: Int = Snackbar.LENGTH_LONG, @StringRes action: Int? = null, listener: View.OnClickListener? = null) {
     Snackbar.make(this, message, duration).apply {
         this.view.setPadding(Dpx.dpToPx(24), Dpx.dpToPx(24), Dpx.dpToPx(24), Dpx.dpToPx(32))
         this.view.background = AppCompatResources.getDrawable(this.context, R.drawable.background_snackbar)
@@ -65,19 +65,24 @@ fun View.snack(message: String, duration: Int = Snackbar.LENGTH_LONG, @StringRes
             setAction(action, listener)
             setActionTextColor(Color.WHITE)
         }
+
+        if (anchor != null) {
+            this.anchorView = anchor
+        }
+
     }.show()
 }
 
-fun View.snacked(@StringRes message: Int, duration: Int = Snackbar.LENGTH_LONG) {
-    this.snack(this.context.getString(message), duration)
+fun View.snacked(@StringRes message: Int, anchor: View? = null, duration: Int = Snackbar.LENGTH_LONG) {
+    this.snack(message = this.context.getString(message), anchor = anchor, duration = duration)
 }
 
-fun View.snacked(message: String, duration: Int = Snackbar.LENGTH_LONG) {
-    this.snack(message, duration)
+fun View.snacked(message: String, anchor: View? = null, duration: Int = Snackbar.LENGTH_LONG) {
+    this.snack(message = message, anchor = anchor, duration = duration)
 }
 
-fun View.snacked(@StringRes message: Int, @StringRes action: Int, listener: View.OnClickListener) {
-    this.snack(this.context.getString(message), Snackbar.LENGTH_LONG, action, listener)
+fun View.snacked(@StringRes message: Int, @StringRes action: Int, listener: View.OnClickListener, anchor: View? = null,) {
+    this.snack(message = this.context.getString(message), anchor = anchor, duration = Snackbar.LENGTH_LONG, action = action, listener = listener)
 }
 
 /* To hide soft keybard */

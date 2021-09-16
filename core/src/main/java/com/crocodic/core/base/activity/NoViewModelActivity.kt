@@ -28,7 +28,7 @@ import com.crocodic.core.data.model.LocationState
 import com.crocodic.core.extension.checkEnabledLocation
 import com.crocodic.core.extension.checkLocationPermission
 import com.crocodic.core.extension.notify
-import com.crocodic.core.extension.pop
+import com.crocodic.core.extension.tos
 import com.crocodic.core.helper.util.ClickPrevention
 import com.crocodic.core.model.AppNotification
 import com.crocodic.core.ui.dialog.ExpiredDialog
@@ -50,7 +50,7 @@ abstract class NoViewModelActivity<VB : ViewDataBinding> : AppCompatActivity(), 
 
     protected val informationDialog by lazy { InformationDialog(this) }
 
-    var notificationClass: Class<*>? = null
+    protected var inAppNotification = true
 
     protected val expiredDialog by lazy {
         ExpiredDialog(this) { positive, dialog ->
@@ -78,17 +78,12 @@ abstract class NoViewModelActivity<VB : ViewDataBinding> : AppCompatActivity(), 
         if (result.resultCode == Activity.RESULT_OK) {
             startLocationManager()
         } else {
-            pop(R.string.cr_error_enable_location)
+            tos(R.string.cr_error_enable_location)
             finish()
         }
     }
 
     //region function can override
-
-    /* set the notification activity */
-    protected fun setNotificationActivity(nClass: Class<*>) {
-        notificationClass = nClass
-    }
 
     /* set binding by layout, pengganti setContentView() */
     protected fun setLayoutRes(@LayoutRes layoutResID: Int) {
@@ -112,6 +107,9 @@ abstract class NoViewModelActivity<VB : ViewDataBinding> : AppCompatActivity(), 
 
     /* Override this function to get result from activityResultLauncher */
     open fun onResult(result: ActivityResult) {}
+
+    /* Override this function to do something when user click the in app notification */
+    open fun onNotificationClick() {}
 
     //endregion
 
@@ -210,7 +208,9 @@ abstract class NoViewModelActivity<VB : ViewDataBinding> : AppCompatActivity(), 
     //region eventbus
     @Subscribe(threadMode = ThreadMode.MAIN)
     open fun onNotify(appNotification: AppNotification) {
-        notify(appNotification, notificationClass)
+        if (inAppNotification) {
+            notify(appNotification) { onNotificationClick() }
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -263,7 +263,7 @@ abstract class NoViewModelActivity<VB : ViewDataBinding> : AppCompatActivity(), 
             ApiStatus.SUCCESS -> {
                 apiResponse.message?.let { msg ->
                     if (apiResponse.flagView == 1) {
-                        pop(msg)
+                        tos(msg)
                     } else {
                         loadingDialog.setResponse(msg)
                     }
@@ -272,7 +272,7 @@ abstract class NoViewModelActivity<VB : ViewDataBinding> : AppCompatActivity(), 
             ApiStatus.WRONG -> {
                 apiResponse.message?.let { msg ->
                     if (apiResponse.flagView == 1) {
-                        pop(msg)
+                        tos(msg)
                     } else {
                         loadingDialog.setResponse(msg)
                     }
@@ -282,7 +282,7 @@ abstract class NoViewModelActivity<VB : ViewDataBinding> : AppCompatActivity(), 
                 apiResponse.message?.let { msg ->
                     if (apiResponse.flagView == 1) {
                         loadingDialog.dismiss()
-                        pop(msg)
+                        tos(msg)
                     } else {
                         loadingDialog.setResponse(msg)
                     }

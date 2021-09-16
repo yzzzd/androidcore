@@ -57,7 +57,7 @@
             android:gravity="center"
             android:text="@string/cr_btn_open_setting"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_button_main"
             android:textSize="@dimen/text_default"
             android:textStyle="bold" />
 

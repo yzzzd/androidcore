@@ -37,6 +37,7 @@ import com.tapadoo.alerter.Alerter
  * Created by @yzzzd on 4/22/18.
  */
 
+@Deprecated("Next toast cannot be custom view", ReplaceWith("tos(message)"))
 fun Context.pop(message: Int) {
     val binding = CrSnackbarBinding.inflate(LayoutInflater.from(this))
     binding.message.setText(message)
@@ -50,6 +51,7 @@ fun Context.pop(message: Int) {
     //Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
 
+@Deprecated("Next toast cannot be custom view", ReplaceWith("tos(message)"))
 fun Context.pop(message: String) {
     val binding = CrSnackbarBinding.inflate(LayoutInflater.from(this))
     binding.message.text = message
@@ -61,6 +63,14 @@ fun Context.pop(message: String) {
     }.show()
 
     //Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+}
+
+fun Context.tos(message: Int, short: Boolean = false) {
+    tos(getString(message), short)
+}
+
+fun Context.tos(message: String, short: Boolean = false) {
+    Toast.makeText(this, message, if (short) Toast.LENGTH_SHORT else Toast.LENGTH_LONG).show()
 }
 
 inline fun <reified T : Activity> Context.openActivity(block: Intent.() -> Unit = {}) {
@@ -127,7 +137,7 @@ fun NoViewModelActivity<*>.checkCameraPermission(exit: Boolean, onComplete: () -
             if (allPermissionsGranted(REQUIRED_PERMISSIONS_CAMERA)) {
                 onComplete()
             } else {
-                pop(R.string.cr_error_permission_denied)
+                tos(R.string.cr_error_permission_denied)
                 if (exit) {
                     finish()
                 }
@@ -147,7 +157,7 @@ fun NoViewModelActivity<*>.checkLocationPermission(onComplete: () -> Unit) {
             if (allPermissionsGranted(REQUIRED_PERMISSIONS_LOCATION)) {
                 onComplete()
             } else {
-                pop(R.string.cr_error_permission_denied)
+                tos(R.string.cr_error_permission_denied)
                 finish()
             }
         }
@@ -206,8 +216,13 @@ fun Activity.openMap() {
     }
 }
 
+/* Open the dial activity */
+fun Activity.openDial(phone: String) {
+    startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:${phone}")))
+}
+
 /* Pop in app notification from the top */
-fun Activity.notify(appNotification: AppNotification, classObject: Class<*>?, sound: Uri? = null, titleFont: Typeface? = null, contentFont: Typeface? = null) {
+fun Activity.notify(appNotification: AppNotification, sound: Uri? = null, titleFont: Typeface? = null, contentFont: Typeface? = null, onClick: () -> Unit) {
 
     playSound(sound)
     playVibrate(80)
@@ -219,7 +234,7 @@ fun Activity.notify(appNotification: AppNotification, classObject: Class<*>?, so
         .enableVibration(false)
         .setOnClickListener {
             Alerter.hide()
-            classObject?.let { co -> startActivity(Intent(this, co)) }
+            onClick()
         }
         .also {
             it.getLayoutContainer()?.findViewById<TextView>(R.id.title)?.apply {

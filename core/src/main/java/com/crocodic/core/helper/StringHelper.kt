@@ -83,6 +83,11 @@ object StringHelper {
         return if (initial.isEmpty()) "-" else initial
     }
 
+    fun validateDigits(value: Double?): String {
+        val format = DecimalFormat("0.#")
+        return if (value == null) "0" else format.format(value)
+    }
+
     fun validateDigits(value: Float?): String {
         val format = DecimalFormat("0.#")
         return if (value == null) "0" else format.format(value)

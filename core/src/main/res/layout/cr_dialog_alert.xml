@@ -41,9 +41,9 @@
             android:layout_marginRight="18dp"
             android:background="@drawable/background_btn_gray"
             android:minWidth="112dp"
-            android:text="Batal"
+            android:text="@string/btn_cancel"
             android:textAllCaps="false"
-            android:textColor="@color/text_gray"
+            android:textColor="@color/text_button_secondary"
             android:textSize="@dimen/text_default"
             android:textStyle="bold" />
 
@@ -54,9 +54,9 @@
             android:layout_height="48dp"
             android:background="@drawable/background_btn_blue"
             android:minWidth="112dp"
-            android:text="Iya"
+            android:text="@string/btn_ok"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_button_main"
             android:textSize="@dimen/text_default"
             android:textStyle="bold" />
 

@@ -32,7 +32,7 @@
                 android:layout_marginRight="12dp"
                 android:gravity="center"
                 android:text="@string/cr_error_session_expired"
-                android:textColor="#CD1430"
+                android:textColor="@color/text_red"
                 android:textSize="@dimen/text_default"
                 android:textStyle="bold" />
 
@@ -77,7 +77,7 @@
             android:minWidth="112dp"
             android:text="@string/cr_btn_logout"
             android:textAllCaps="false"
-            android:textColor="@color/text_gray"
+            android:textColor="@color/text_button_secondary"
             android:textSize="@dimen/text_default"
             android:textStyle="bold" />
 
@@ -90,7 +90,7 @@
             android:minWidth="186dp"
             android:text="@string/cr_btn_keep_login"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_button_main"
             android:textSize="@dimen/text_default"
             android:textStyle="bold" />
 

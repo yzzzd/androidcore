@@ -32,9 +32,9 @@
                 android:layout_margin="8dp"
                 android:layout_weight="2"
                 android:background="@drawable/background_btn_gray"
-                android:text="Tolak"
+                android:text="@string/btn_reject"
                 android:textAllCaps="false"
-                android:textColor="@color/text_gray"
+                android:textColor="@color/text_button_secondary"
                 android:textSize="@dimen/text_default"
                 android:textStyle="bold" />
 
@@ -46,9 +46,9 @@
                 android:layout_margin="8dp"
                 android:layout_weight="3"
                 android:background="@drawable/background_btn_blue"
-                android:text="Terima"
+                android:text="@string/btn_accept"
                 android:textAllCaps="false"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/text_button_main"
                 android:textSize="@dimen/text_default"
                 android:textStyle="bold" />
 
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="24dp"
-            android:text="Ijin Lokasi"
+            android:text="@string/title_location_permission"
             android:textColor="@color/text_default"
             android:textSize="@dimen/text_large"
             android:textStyle="bold" />
@@ -79,7 +79,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="24dp"
             android:gravity="center"
-            android:text="Kami membutuhkan ijin akses lokasi Anda"
+            android:text="@string/title_location_permission_desc"
             android:textColor="@color/text_default"
             android:textSize="@dimen/text_default" />
 
@@ -95,7 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Aplikasi menggunakan data lokasi Anda untuk kebutuhan fitur geo fencing. Akses lokasi juga dibutuhkan untuk geo tagging lokasi."
+            android:text="@string/lbl_location_permission_dec1"
             android:textColor="@color/text_default"
             android:textSize="@dimen/text_small" />
 
@@ -103,7 +103,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Aplikasi tidak akan mengambil lokasi Anda saat aplikasi tidak digunakan."
+            android:text="@string/lbl_location_permission_dec2"
             android:textColor="@color/text_default"
             android:textSize="@dimen/text_small" />
 
@@ -111,7 +111,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Permintaan akses lokasi tercantum dalam Kebijakan Privasi kami."
+            android:text="@string/lbl_location_permission_dec3"
             android:textColor="@color/text_default"
             android:textSize="@dimen/text_small" />
 
