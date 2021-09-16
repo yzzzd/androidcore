@@ -2,6 +2,7 @@ package com.crocodic.core.extension
 
 import android.content.Context
 import android.graphics.Color
+import android.util.Base64
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
@@ -19,9 +20,14 @@ import com.crocodic.core.helper.list.EndlessScrollListener
 import com.crocodic.core.helper.util.Dpx
 import com.google.android.material.snackbar.Snackbar
 
+
 /**
  * Created by @yzzzd on 4/22/18.
  */
+
+fun String.base64encrypt() = Base64.encodeToString(this.toByteArray(), Base64.NO_WRAP)
+
+fun String.base64decrypt() = String(Base64.decode(this, Base64.NO_WRAP), Charsets.UTF_8)
 
 fun String.encrypt(secret: String? = null) = if (secret.isNullOrEmpty()) Crypt.aesEncrypt(this) else Crypt.aesEncrypt(this, secret)
 
@@ -81,7 +87,7 @@ fun View.snacked(message: String, anchor: View? = null, duration: Int = Snackbar
     this.snack(message = message, anchor = anchor, duration = duration)
 }
 
-fun View.snacked(@StringRes message: Int, @StringRes action: Int, listener: View.OnClickListener, anchor: View? = null,) {
+fun View.snacked(@StringRes message: Int, @StringRes action: Int, listener: View.OnClickListener, anchor: View? = null) {
     this.snack(message = this.context.getString(message), anchor = anchor, duration = Snackbar.LENGTH_LONG, action = action, listener = listener)
 }
 
