@@ -66,7 +66,7 @@ deps.eventbus = "org.greenrobot:eventbus:$versions.eventbus"
 deps.exifinterface = "androidx.exifinterface:exifinterface:$versions.exif"
 deps.gms_plugin = "com.google.gms:google-services:$versions.gms_plugin"
 deps.gson = "com.google.code.gson:gson:$versions.gson"
-deps.image_preview = "com.github.stfalcon:stfalcon-imageviewer:$versions.image_preview"
+deps.image_preview = "com.github.stfalcon-studio:StfalconImageViewer:$versions.image_preview"
 deps.material = "com.google.android.material:material:$versions.material"
 deps.pix_project = "com.github.yzzzd:PixProject:$versions.pix_project"
 deps.recyclerview = "androidx.recyclerview:recyclerview:$versions.recyclerview"
@@ -142,7 +142,7 @@ ext.deps = deps
 
 static def addRepos(RepositoryHandler handler) {
     handler.google()
-    handler.jcenter()
+    handler.mavenCentral()
     handler.maven { url 'https://jitpack.io' }
 }
 ext.addRepos = this.&addRepos
