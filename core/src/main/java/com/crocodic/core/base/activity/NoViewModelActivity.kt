@@ -29,11 +29,13 @@ import com.crocodic.core.extension.checkEnabledLocation
 import com.crocodic.core.extension.checkLocationPermission
 import com.crocodic.core.extension.notify
 import com.crocodic.core.extension.tos
+import com.crocodic.core.helper.StateViewHelper
 import com.crocodic.core.helper.util.ClickPrevention
 import com.crocodic.core.model.AppNotification
 import com.crocodic.core.ui.dialog.ExpiredDialog
 import com.crocodic.core.ui.dialog.InformationDialog
 import com.crocodic.core.ui.dialog.LoadingDialog
+import com.crocodic.core.widget.stateview.StateView
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -51,6 +53,8 @@ abstract class NoViewModelActivity<VB : ViewDataBinding> : AppCompatActivity(), 
     protected val informationDialog by lazy { InformationDialog(this) }
 
     protected var inAppNotification = true
+
+    protected var stateViewHelper: StateViewHelper? = null
 
     protected val expiredDialog by lazy {
         ExpiredDialog(this) { positive, dialog ->
@@ -94,6 +98,10 @@ abstract class NoViewModelActivity<VB : ViewDataBinding> : AppCompatActivity(), 
     @Deprecated("Aktifkan data binding dan gunakan setLayoutRes()", ReplaceWith("setLayoutRes(layoutResID)"))
     override fun setContentView(layoutResID: Int) {
         super.setContentView(layoutResID)
+    }
+
+    fun withStateView(stateView: StateView, @LayoutRes emptyRes: Int = R.layout.state_empty, @LayoutRes errorRes: Int = R.layout.state_error, @LayoutRes loadingRes: Int = R.layout.state_loading) {
+        stateViewHelper = StateViewHelper(stateView = stateView, emptyRes = emptyRes, errorRes = errorRes, loadingRes = loadingRes)
     }
 
     /* Override this function to perform renew token from activity that have viewModel */
@@ -272,7 +280,11 @@ abstract class NoViewModelActivity<VB : ViewDataBinding> : AppCompatActivity(), 
             ApiStatus.WRONG -> {
                 apiResponse.message?.let { msg ->
                     if (apiResponse.flagView == 1) {
-                        tos(msg)
+                        if (stateViewHelper != null) {
+                            stateViewHelper?.showError(msg)
+                        } else {
+                            tos(msg)
+                        }
                     } else {
                         loadingDialog.setResponse(msg)
                     }
@@ -281,8 +293,11 @@ abstract class NoViewModelActivity<VB : ViewDataBinding> : AppCompatActivity(), 
             else -> {
                 apiResponse.message?.let { msg ->
                     if (apiResponse.flagView == 1) {
-                        loadingDialog.dismiss()
-                        tos(msg)
+                        if (stateViewHelper != null) {
+                            stateViewHelper?.showError(msg)
+                        } else {
+                            tos(msg)
+                        }
                     } else {
                         loadingDialog.setResponse(msg)
                     }

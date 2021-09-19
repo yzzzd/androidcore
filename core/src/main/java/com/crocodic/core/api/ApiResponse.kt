@@ -61,7 +61,7 @@ open class ApiResponse(
             }
         } else if (error is UnknownHostException) {
             status = ApiStatus.WRONG
-            message = "Maaf, tidak tersambung dengan server. Silakan coba lagi atau hubungi admin."
+            message = "Maaf, tidak tersambung dengan server. Silakan coba lagi."
         }
 
         return this
