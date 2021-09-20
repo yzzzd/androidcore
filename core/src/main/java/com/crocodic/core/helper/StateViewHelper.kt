@@ -15,8 +15,8 @@ import com.crocodic.core.widget.stateview.StateView
 
 class StateViewHelper(val stateView: StateView?, @LayoutRes emptyRes: Int = R.layout.state_empty, @LayoutRes val errorRes: Int = R.layout.state_error, @LayoutRes loadingRes: Int = R.layout.state_loading) {
     init {
-        setState(STATE_EMPTY, emptyRes)
         setState(STATE_ERROR, errorRes)
+        setState(STATE_EMPTY, emptyRes)
         setState(STATE_LOADING, loadingRes)
     }
 

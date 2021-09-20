@@ -75,6 +75,10 @@ class StateView : FrameLayout{
             addView(view)
         }
         view.visibility = GONE
+
+        removeView(mStateViews[CONTENT])
+        addView(mStateViews[CONTENT])
+
         mDirtyFlag = true
     }
 
