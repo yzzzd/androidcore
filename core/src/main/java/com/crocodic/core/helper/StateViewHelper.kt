@@ -15,8 +15,6 @@ import com.crocodic.core.widget.stateview.StateView
 
 class StateViewHelper(val stateView: StateView?, @LayoutRes emptyRes: Int = R.layout.state_empty, @LayoutRes val errorRes: Int = R.layout.state_error, @LayoutRes loadingRes: Int = R.layout.state_loading, val overContent: Boolean = true) {
 
-    var onRetry: (() -> Unit)? = null
-
     init {
         setState(STATE_ERROR, errorRes)
         setState(STATE_EMPTY, emptyRes)
@@ -45,8 +43,10 @@ class StateViewHelper(val stateView: StateView?, @LayoutRes emptyRes: Int = R.la
             binding.setVariable(BR.data, message)
 
             onRetry?.let {
-                this.onRetry = onRetry
                 binding.setVariable(BR.showButton, true)
+                binding.root.findViewById<View>(R.id.btn_retry)?.setOnClickListener {
+                    onRetry()
+                }
             }
 
             stateView.setStateView(STATE_ERROR, binding.root)
