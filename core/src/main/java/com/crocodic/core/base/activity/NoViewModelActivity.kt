@@ -119,6 +119,9 @@ abstract class NoViewModelActivity<VB : ViewDataBinding> : AppCompatActivity(), 
     /* Override this function to do something when user click the in app notification */
     open fun onNotificationClick() {}
 
+    /* Override this function to do retry when state error */
+    open fun onErrorRetryClick() {}
+
     //endregion
 
     /* to check location permission */
@@ -190,7 +193,7 @@ abstract class NoViewModelActivity<VB : ViewDataBinding> : AppCompatActivity(), 
         super.onDestroy()
     }
 
-    override fun onResume() {
+    open override fun onResume() {
         super.onResume()
         if (Build.VERSION.SDK_INT >= 23 &&
             ContextCompat.checkSelfPermission(
@@ -281,7 +284,9 @@ abstract class NoViewModelActivity<VB : ViewDataBinding> : AppCompatActivity(), 
                 apiResponse.message?.let { msg ->
                     if (apiResponse.flagView == 1) {
                         if (stateViewHelper != null) {
-                            stateViewHelper?.showError(msg)
+                            stateViewHelper?.showError(msg) {
+                                onErrorRetryClick()
+                            }
                         } else {
                             tos(msg)
                         }
@@ -294,7 +299,9 @@ abstract class NoViewModelActivity<VB : ViewDataBinding> : AppCompatActivity(), 
                 apiResponse.message?.let { msg ->
                     if (apiResponse.flagView == 1) {
                         if (stateViewHelper != null) {
-                            stateViewHelper?.showError(msg)
+                            stateViewHelper?.showError(msg) {
+                                onErrorRetryClick()
+                            }
                         } else {
                             tos(msg)
                         }

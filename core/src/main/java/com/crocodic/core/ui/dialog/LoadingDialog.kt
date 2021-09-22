@@ -6,15 +6,15 @@ import android.view.View
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.crocodic.core.R
-import com.crocodic.core.databinding.DialogLoadingBinding
+import com.crocodic.core.databinding.CrDialogLoadingBinding
 
 /**
  * Created by @yzzzd on 4/22/18.
  */
 
-class LoadingDialog(context: Context): CoreDialog<DialogLoadingBinding>(context) {
+class LoadingDialog(context: Context): CoreDialog<CrDialogLoadingBinding>(context) {
 
-    override fun getViewBinding() = DialogLoadingBinding.inflate(LayoutInflater.from(context))
+    override fun getViewBinding() = CrDialogLoadingBinding.inflate(LayoutInflater.from(context))
 
     fun setMessage(@StringRes message: Int): LoadingDialog {
         return setMessage(string(message))

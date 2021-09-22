@@ -25,7 +25,7 @@ open class BaseListAdapter<VB: ViewDataBinding, T: Any?>(private var layoutRes: 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder<VB, T> {
-        val binding = DataBindingUtil.inflate<VB>(LayoutInflater.from(parent.context), if (viewType == VIEW_TYPE_LOADING) R.layout.item_load_more else layoutRes, parent, false)
+        val binding = DataBindingUtil.inflate<VB>(LayoutInflater.from(parent.context), if (viewType == VIEW_TYPE_LOADING) R.layout.cr_item_load_more else layoutRes, parent, false)
         return ItemViewHolder(binding)
     }
 

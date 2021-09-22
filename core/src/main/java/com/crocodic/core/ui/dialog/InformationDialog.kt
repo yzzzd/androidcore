@@ -5,15 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import com.crocodic.core.databinding.DialogInformationBinding
+import com.crocodic.core.databinding.CrDialogInformationBinding
 
 /**
  * Created by @yzzzd on 4/22/18.
  */
 
-class InformationDialog(context: Context): CoreDialog<DialogInformationBinding>(context) {
+class InformationDialog(context: Context): CoreDialog<CrDialogInformationBinding>(context) {
 
-    override fun getViewBinding() = DialogInformationBinding.inflate(LayoutInflater.from(context))
+    override fun getViewBinding() = CrDialogInformationBinding.inflate(LayoutInflater.from(context))
 
     fun setMessage(@StringRes message: Int, @DrawableRes drawable: Int): InformationDialog {
         return setMessage(null, string(message), drawable)

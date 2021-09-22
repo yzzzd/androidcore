@@ -28,7 +28,7 @@ class StateView : FrameLayout{
         if(!mInitialized) onSetupContentState()
     }
 
-    override fun onSaveInstanceState(): Parcelable? {
+    override fun onSaveInstanceState(): Parcelable {
         val bundle = Bundle().apply {
             putParcelable(SAVED_INSTANCE_STATE, super.onSaveInstanceState())
         }

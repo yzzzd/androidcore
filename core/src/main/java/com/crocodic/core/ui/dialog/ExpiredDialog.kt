@@ -3,15 +3,15 @@ package com.crocodic.core.ui.dialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
-import com.crocodic.core.databinding.DialogExpiredBinding
+import com.crocodic.core.databinding.CrDialogExpiredBinding
 
 /**
  * Created by @yzzzd on 4/22/18.
  */
 
-class ExpiredDialog(context: Context, onButtonClick: (positive: Boolean, dialog: ExpiredDialog) -> Unit) : CoreDialog<DialogExpiredBinding>(context) {
+class ExpiredDialog(context: Context, onButtonClick: (positive: Boolean, dialog: ExpiredDialog) -> Unit) : CoreDialog<CrDialogExpiredBinding>(context) {
 
-    override fun getViewBinding() = DialogExpiredBinding.inflate(LayoutInflater.from(context))
+    override fun getViewBinding() = CrDialogExpiredBinding.inflate(LayoutInflater.from(context))
 
     private var stillLoading = false
 
@@ -52,7 +52,7 @@ class ExpiredDialog(context: Context, onButtonClick: (positive: Boolean, dialog:
         return this
     }
 
-    override fun show(): CoreDialog<DialogExpiredBinding> {
+    override fun show(): CoreDialog<CrDialogExpiredBinding> {
         if (isShowing() && stillLoading) {
             setLoading(false)
         }
@@ -64,7 +64,7 @@ class ExpiredDialog(context: Context, onButtonClick: (positive: Boolean, dialog:
         return this
     }
 
-    override fun dismiss(): CoreDialog<DialogExpiredBinding> {
+    override fun dismiss(): CoreDialog<CrDialogExpiredBinding> {
         if (isShowing()) {
             setLoading(false)
         }

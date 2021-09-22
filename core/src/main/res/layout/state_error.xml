@@ -2,9 +2,17 @@
 <layout>
 
     <data>
+
         <variable
             name="data"
             type="String" />
+
+        <variable
+            name="showButton"
+            type="Boolean" />
+
+        <import type="android.view.View" />
+
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
@@ -21,6 +29,21 @@
             android:text='@{data}'
             android:textColor="@color/text_default"
             android:textSize="@dimen/text_medium" />
+
+        <Button
+            android:id="@+id/btn_retry"
+            style="@style/DialogButton"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/background_btn_blue"
+            android:minWidth="112dp"
+            android:text="@string/btn_try_again"
+            android:textAllCaps="false"
+            android:textColor="@color/text_button_main"
+            android:textSize="@dimen/text_default"
+            android:textStyle="bold"
+            android:visibility='@{showButton ? View.VISIBLE : View.GONE}' />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
