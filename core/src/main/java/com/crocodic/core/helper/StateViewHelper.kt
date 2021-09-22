@@ -13,7 +13,10 @@ import com.crocodic.core.widget.stateview.StateView
  * Created by @yzzzd on 4/19/18.
  */
 
-class StateViewHelper(val stateView: StateView?, @LayoutRes emptyRes: Int = R.layout.state_empty, @LayoutRes val errorRes: Int = R.layout.state_error, @LayoutRes loadingRes: Int = R.layout.state_loading, val overContent: Boolean = true) {
+class StateViewHelper(val stateView: StateView?, @LayoutRes emptyRes: Int = R.layout.state_empty, @LayoutRes val errorRes: Int = R.layout.state_error, @LayoutRes loadingRes: Int = R.layout.state_loading) {
+
+    var withRetry = false
+    var overContent = true
 
     init {
         setState(STATE_ERROR, errorRes)
@@ -41,14 +44,10 @@ class StateViewHelper(val stateView: StateView?, @LayoutRes emptyRes: Int = R.la
         if (message != null && stateView != null) {
             val binding = stateView.generateViewBinding<ViewDataBinding>(errorRes)
             binding.setVariable(BR.data, message)
-
-            onRetry?.let {
-                binding.setVariable(BR.showButton, true)
-                binding.root.findViewById<View>(R.id.btn_retry)?.setOnClickListener {
-                    onRetry()
-                }
+            binding.setVariable(BR.showButton, withRetry)
+            binding.root.findViewById<View>(R.id.btn_retry)?.setOnClickListener {
+                onRetry?.invoke()
             }
-
             stateView.setStateView(STATE_ERROR, binding.root)
         }
 
