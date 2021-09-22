@@ -32,7 +32,7 @@ class StateViewHelper(val stateView: StateView?, @LayoutRes emptyRes: Int = R.la
         if (value) {
             stateView?.setState(STATE_EMPTY, oc)
         } else {
-            showContent()
+            showContent(oc = oc)
         }
     }
 

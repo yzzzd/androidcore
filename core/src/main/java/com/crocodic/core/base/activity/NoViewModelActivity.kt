@@ -284,7 +284,7 @@ abstract class NoViewModelActivity<VB : ViewDataBinding> : AppCompatActivity(), 
                 apiResponse.message?.let { msg ->
                     if (apiResponse.flagView == 1) {
                         if (stateViewHelper != null) {
-                            stateViewHelper?.showError(msg) {
+                            stateViewHelper?.showError(msg, false) {
                                 onErrorRetryClick()
                             }
                         } else {
@@ -299,7 +299,7 @@ abstract class NoViewModelActivity<VB : ViewDataBinding> : AppCompatActivity(), 
                 apiResponse.message?.let { msg ->
                     if (apiResponse.flagView == 1) {
                         if (stateViewHelper != null) {
-                            stateViewHelper?.showError(msg) {
+                            stateViewHelper?.showError(msg, false) {
                                 onErrorRetryClick()
                             }
                         } else {
