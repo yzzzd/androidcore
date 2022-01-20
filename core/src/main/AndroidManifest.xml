@@ -16,5 +16,9 @@
         <activity
             android:name="com.crocodic.core.ui.permission.LocationPermissionActivity"
             android:screenOrientation="portrait" />
+
+        <meta-data android:name="google_analytics_adid_collection_enabled"
+            android:value="false" />
+
     </application>
 </manifest>
