@@ -13,7 +13,7 @@ android {
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
         versionCode 3
-        versionName "3.0.0-beta7"
+        versionName "3.0.0-beta9"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -68,7 +68,11 @@ dependencies {
     api deps.eventbus
 
     /* Firebase */
-    api deps.firebase.runtime
+    api (deps.firebase.runtime) {
+        exclude module: "play-services-ads-identifier"
+        exclude module: "play-services-measurement"
+        exclude module: "play-services-measurement-sdk"
+    }
     api deps.firebase.messaging
     api deps.firebase.crashlytics
     api deps.firebase.perf
