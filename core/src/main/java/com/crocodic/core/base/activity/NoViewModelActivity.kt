@@ -149,7 +149,12 @@ abstract class NoViewModelActivity<VB : ViewDataBinding>(@LayoutRes private val 
 
             override fun onLocationChanged(location: Location) {
                 retrieveLocationChange(location)
-                EventBus.getDefault().post(LocationState.LocationFake(location.isFromMockProvider))
+                val isMock = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    location.isMock
+                } else {
+                    location.isFromMockProvider
+                }
+                EventBus.getDefault().post(LocationState.LocationFake(isMock))
             }
 
             override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {
