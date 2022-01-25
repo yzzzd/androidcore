@@ -1,7 +1,7 @@
 # AndroidCore
 AndroidCore make you get the most rapid development.
 
-[![Release](https://jitpack.io/v/yzzzd/androidcore-lite.svg)](https://jitpack.io/#crocodic-studio/AndroidCoreProject)
+[![Release](https://jitpack.io/v/crocodic-studio/AndroidCoreProject.svg)](https://jitpack.io/#crocodic-studio/AndroidCoreProject)
 
 ## Wiki
 To know what's new in this repository, please read our [Wiki](https://github.com/yzzzd/androidcore/wiki)
