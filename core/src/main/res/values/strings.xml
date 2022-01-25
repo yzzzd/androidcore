@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="btn_accept">Terima</string>
+    <string name="btn_cancel">Batal</string>
+    <string name="btn_ok">OK</string>
+    <string name="btn_reject">Tolak</string>
+    <string name="btn_try_again">Coba Lagi</string>
+    <string name="cr_btn_keep_login">Tetap Login</string>
+    <string name="cr_btn_logout">Keluar</string>
+    <string name="cr_btn_open_setting">Buka Pengaturan</string>
+    <string name="cr_empty_data">Data kosong</string>
+    <string name="cr_error_enable_location">Harap mengaktifkan GPS atau Lokasi</string>
+    <string name="cr_error_permission_denied">Permissions not granted by the user</string>
+    <string name="cr_error_please_disable_mock">Sepertinya Anda terdeteksi menggunakan aplikasi Fake GPS, mohon untuk dimatikan/uninstall kemudian buka kembali aplikasi. Apabila masih terkendala, lakukan restart.</string>
+    <string name="cr_error_please_enable_location">Sepertinya Anda belum mengaktifkan GPS atau Lokasi</string>
+    <string name="cr_error_session_expired">Your session has been expired</string>
+    <string name="cr_error_session_expired_dialog">In order to keep your account safe, we periodically check to see if you\'re still here. You can stay logged in by clicking bellow.</string>
+    <string name="cr_error_ups">Ups…</string>
+    <string name="cr_info_permission_camera">Ijin Akses Kamera dibutuhkan agar semua fitur Aplikasi dapat berjalan dengan optimal.</string>
+    <string name="cr_info_permission_location">Aplikasi membutuhkan ijin akses lokasi perangkat sepanjang waktu untuk dapat berjalan secara optimal.</string>
+    <string name="lbl_camera_permission_dec1">Aplikasi membutuhkan akses kamera Anda untuk mengambil foto.</string>
+    <string name="lbl_camera_permission_dec2">Aplikasi membutuhkan akses penyimpanan perangkat Anda untuk menyimpan atau mengolah hasil capture foto.</string>
+    <string name="lbl_camera_permission_dec3">Permintaan ijin akses kamera tercantum dalam Kebijakan Privasi kami.</string>
+    <string name="lbl_location_permission_dec1">Aplikasi menggunakan data lokasi Anda untuk kebutuhan fitur geo fencing. Akses lokasi juga dibutuhkan untuk geo tagging lokasi.</string>
+    <string name="lbl_location_permission_dec2">Aplikasi tidak akan mengambil lokasi Anda saat aplikasi tidak digunakan.</string>
+    <string name="lbl_location_permission_dec3">Permintaan akses lokasi tercantum dalam Kebijakan Privasi kami.</string>
+    <string name="title_camera_permission_desc">Kami membutuhkan ijin akses kamera Anda</string>
+    <string name="title_location_permission">Ijin Lokasi</string>
+    <string name="title_location_permission_desc">Kami membutuhkan ijin akses lokasi Anda</string>
+    <string name="title_permission_camera">Ijin Kamera</string>
+</resources>

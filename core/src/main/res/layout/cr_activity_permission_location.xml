@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.crocodic.core.ui.permission.LocationPermissionActivity">
+
+    <LinearLayout
+        android:id="@+id/button_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E4E4E4" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <Button
+                android:id="@+id/button_negative"
+                style="@style/DialogButton"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_btn_secondary"
+                android:text="@string/btn_reject"
+                android:textAllCaps="false"
+                android:textColor="@color/text_button_secondary"
+                android:textSize="@dimen/text_default"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button_positive"
+                style="@style/DialogButton"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_btn_main"
+                android:text="@string/btn_accept"
+                android:textAllCaps="false"
+                android:textColor="@color/text_button_main"
+                android:textSize="@dimen/text_default"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/button_parent"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:text="@string/title_location_permission"
+            android:textColor="@color/text_default"
+            android:textSize="@dimen/text_large"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="24dp"
+            android:gravity="center"
+            android:text="@string/title_location_permission_desc"
+            android:textColor="@color/text_default"
+            android:textSize="@dimen/text_default" />
+
+        <ImageView
+            android:layout_width="192dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="24dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/img_grant_location" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/lbl_location_permission_dec1"
+            android:textColor="@color/text_default"
+            android:textSize="@dimen/text_small" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/lbl_location_permission_dec2"
+            android:textColor="@color/text_default"
+            android:textSize="@dimen/text_small" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/lbl_location_permission_dec3"
+            android:textColor="@color/text_default"
+            android:textSize="@dimen/text_small" />
+
+    </LinearLayout>
+
+</RelativeLayout>

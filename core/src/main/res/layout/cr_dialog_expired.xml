@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/v_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="24dp"
+                android:src="@drawable/ic_expired" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:gravity="center"
+                android:text="@string/cr_error_session_expired"
+                android:textColor="@color/text_red"
+                android:textSize="@dimen/text_default"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="12dp"
+                android:gravity="center"
+                android:text="@string/cr_error_session_expired_dialog"
+                android:textColor="@color/text_default"
+                android:textSize="@dimen/text_default" />
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_wheel"
+            style="@style/CustomProgressBar"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:clipToPadding="false"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_cancel"
+            style="@style/DialogButton"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginRight="18dp"
+            android:layout_weight="1"
+            android:background="@drawable/background_btn_secondary"
+            android:minWidth="112dp"
+            android:text="@string/cr_btn_logout"
+            android:textAllCaps="false"
+            android:textColor="@color/text_button_secondary"
+            android:textSize="@dimen/text_default"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_ok"
+            style="@style/DialogButton"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@drawable/background_btn_red"
+            android:minWidth="186dp"
+            android:text="@string/cr_btn_keep_login"
+            android:textAllCaps="false"
+            android:textColor="@color/text_button_main"
+            android:textSize="@dimen/text_default"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>
