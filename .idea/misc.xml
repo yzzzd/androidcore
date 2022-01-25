@@ -5,6 +5,8 @@
       <map>
         <entry key="../../../../../../layout/custom_preview.xml" value="0.23333333333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.4046875" />
+        <entry key="app/src/main/res/layout/item_list_sample.xml" value="0.4046875" />
+        <entry key="app/src/main/res/layout/item_main.xml" value="0.4046875" />
         <entry key="core/src/main/res/drawable/background_btn_blue.xml" value="0.42083333333333334" />
         <entry key="core/src/main/res/drawable/background_btn_gray.xml" value="0.42083333333333334" />
         <entry key="core/src/main/res/drawable/background_btn_red.xml" value="0.42083333333333334" />
