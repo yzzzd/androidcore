@@ -99,6 +99,9 @@ project.afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
+                groupId = 'com.github.crocodic-studio'
+                artifactId = 'core'
+                version = '4.0.1'
                 from components.release
             }
         }
