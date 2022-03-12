@@ -13,7 +13,7 @@ android {
         minSdk 23
         targetSdk 32
         versionCode 4
-        versionName "4.0.1"
+        versionName "4.0.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -99,9 +99,6 @@ project.afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-                groupId = 'com.github.crocodic-studio'
-                artifactId = 'core'
-                version = '4.0.1'
                 from components.release
             }
         }
