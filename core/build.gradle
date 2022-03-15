@@ -35,7 +35,7 @@ android {
         dataBinding true
     }
     packagingOptions {
-        pickFirst 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/DEPENDENCIES'
     }
 }
 
