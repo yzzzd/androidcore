@@ -34,6 +34,9 @@ android {
         viewBinding true
         dataBinding true
     }
+    packagingOptions {
+        pickFirst 'META-INF/DEPENDENCIES'
+    }
 }
 
 dependencies {
@@ -93,11 +96,15 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
 
-project.afterEvaluate {
+afterEvaluate {
     publishing {
         publications {
+            // Creates a Maven publication called "release".
             release(MavenPublication) {
                 from components.release
+                groupId = 'com.github.crocodic-studio'
+                artifactId = 'AndroidCoreProject'
+                version = '4.0.1'
             }
         }
     }
