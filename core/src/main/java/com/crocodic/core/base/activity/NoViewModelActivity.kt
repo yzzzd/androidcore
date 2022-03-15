@@ -1,6 +1,7 @@
 package com.crocodic.core.base.activity
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -90,18 +91,13 @@ abstract class NoViewModelActivity<VB : ViewDataBinding>(@LayoutRes private val 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, layoutRes)
+        binding.lifecycleOwner = this
     }
 
     //region function can override
 
-    /* set binding by layout, pengganti setContentView() */
-    @Deprecated("Unused, change to add layout resource directly into activity constructor")
-    protected fun setLayoutRes(@LayoutRes layoutResID: Int) {
-        //binding = DataBindingUtil.setContentView(this, layoutResID)
-    }
-
     /* data binding tidak aktif dengan fungsi ini */
-    @Deprecated("Aktifkan data binding dan gunakan setLayoutRes()", ReplaceWith("setLayoutRes(layoutResID)"))
+    @Deprecated("Enable data binding and change to add layout resource directly into activity constructor")
     override fun setContentView(layoutResID: Int) {
         super.setContentView(layoutResID)
     }
@@ -143,6 +139,7 @@ abstract class NoViewModelActivity<VB : ViewDataBinding>(@LayoutRes private val 
     open fun retrieveLocationChange(location: Location) { }
 
     /* Override this function if want to start location manager at activity */
+    @SuppressLint("MissingPermission")
     private fun startLocationManager() {
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         locationListener = object : LocationListener {
@@ -172,8 +169,7 @@ abstract class NoViewModelActivity<VB : ViewDataBinding>(@LayoutRes private val 
             }
         }
 
-        if (Build.VERSION.SDK_INT >= 23 &&
-            ContextCompat.checkSelfPermission(
+        if (ContextCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED &&
@@ -204,10 +200,10 @@ abstract class NoViewModelActivity<VB : ViewDataBinding>(@LayoutRes private val 
         super.onDestroy()
     }
 
+    @SuppressLint("MissingPermission")
     open override fun onResume() {
         super.onResume()
-        if (Build.VERSION.SDK_INT >= 23 &&
-            ContextCompat.checkSelfPermission(
+        if (ContextCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED &&
