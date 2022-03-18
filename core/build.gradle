@@ -38,6 +38,7 @@ android {
         exclude 'META-INF/DEPENDENCIES'
     }
 }
+apply from: '../publish_local.gradle'
 
 dependencies {
 
