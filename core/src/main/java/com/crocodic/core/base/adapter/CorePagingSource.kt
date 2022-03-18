@@ -8,6 +8,7 @@ import androidx.paging.PagingState
  * Dibangun diatas library paging3
  *
  * Menggunakan [PaginationAdapter] sebagai ganti pengganti CoreListAdapter
+ *
  * [firstPageIndex] Halaman pertama paginasi
  *
  * [block] Suspend function dengan return value List <T>

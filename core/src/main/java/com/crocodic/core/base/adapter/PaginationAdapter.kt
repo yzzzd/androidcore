@@ -25,7 +25,9 @@ import com.crocodic.core.BR
  * val orderList = adapter.snapshot()
  *
  * ```
- * Panduan untuk membuat object Pager dapat dilihat di doc [CorePagingSource]
+ * Panduan cara penggunaan di dokumentasi berikut [CorePagingSource]
+ *
+ * Sample app [https://github.com/wahyudotdev/pagination3_sample]
  */
 open class PaginationAdapter<VB: ViewDataBinding, T: Any>(private val layoutRes: Int) : PagingDataAdapter<T, PaginationAdapter<VB, T>.ItemViewHolder<VB, T>>(DiffUtilCallback()){
 
