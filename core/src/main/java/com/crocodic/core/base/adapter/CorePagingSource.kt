@@ -60,7 +60,7 @@ open class CorePagingSource<T : Any> constructor(
         return try {
             val page = params.key ?: firstPageIndex
             val data = block(page, params.loadSize)
-            val nextPage = if (data.isEmpty()) {
+            val nextPage = if (data.size < params.loadSize) {
                 null
             } else {
                 page + 1
