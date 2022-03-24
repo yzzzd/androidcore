@@ -40,10 +40,7 @@ import androidx.paging.PagingState
  * }
  * ```
  */
-open class CorePagingSource<T : Any> constructor(
-    private val firstPageIndex: Int,
-    private val block: suspend (page: Int, limit: Int) -> List<T>
-): PagingSource<Int, T>(){
+open class CorePagingSource<T : Any> constructor(private val firstPageIndex: Int, private val block: suspend (page: Int, limit: Int) -> List<T>): PagingSource<Int, T>(){
 
     companion object {
         fun config(itemPerPage: Int = 10) = PagingConfig(pageSize = itemPerPage, initialLoadSize = itemPerPage)

@@ -47,13 +47,9 @@ open class PaginationAdapter<VB: ViewDataBinding, T: Any>(private val layoutRes:
 
     override fun onBindViewHolder(holder: ItemViewHolder<VB, T>, position: Int) {
         val item = getItem(position)
-        item?.let {
-            holder.bind(item)
-            onItemClick?.let {
-                holder.itemView.setOnClickListener {
-                    it(position, item)
-                }
-            }
+        item?.let { itm ->
+            holder.bind(itm)
+            onItemClick?.let { holder.itemView.setOnClickListener { it(position, itm) } }
         }
     }
 

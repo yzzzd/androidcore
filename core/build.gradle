@@ -38,7 +38,8 @@ android {
         exclude 'META-INF/DEPENDENCIES'
     }
 }
-apply from: '../publish_local.gradle'
+
+//apply from: '../publish_local.gradle'
 
 dependencies {
 
@@ -108,7 +109,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.crocodic-studio'
                 artifactId = 'AndroidCoreProject'
-                version = '4.0.1'
+                version = '4.0.2'
             }
         }
     }
