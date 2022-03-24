@@ -3,6 +3,7 @@ package com.nuryazid.androidcore.ui.main
 import android.location.Location
 import android.os.Bundle
 import com.crocodic.core.extension.checkLocationPermission
+import com.crocodic.core.helper.log.Log
 import com.nuryazid.androidcore.R
 import com.nuryazid.androidcore.base.BaseActivity
 import com.nuryazid.androidcore.databinding.ActivityMainBinding
@@ -18,6 +19,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(R.layout.a
     }
 
     override fun retrieveLocationChange(location: Location) {
-        Timber.d("retreive location at ${location.accuracy}")
+        Log.d("retrieve location at ${location.accuracy}")
     }
 }
