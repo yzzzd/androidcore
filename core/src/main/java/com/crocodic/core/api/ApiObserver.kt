@@ -11,25 +11,25 @@ import org.json.JSONObject
  * Created by @yzzzd on 4/22/18.
  */
 
-open class ApiObserver(block: suspend () -> String, toast: Boolean = false, onSuccess: (response: JSONObject) -> Unit) {
-
-    private var onErrorThrowable: ((ApiResponse) -> Unit)? = null
-
+class ApiObserver(block: suspend () -> String, toast: Boolean = false, responseListener: ResponseListener) {
     init {
         val exception = CoroutineExceptionHandler { coroutineContext, throwable ->
             val response = ApiResponse(isToast = toast).responseError(throwable)
-            EventBus.getDefault().post(response)
-            onErrorThrowable?.invoke(response)
+            responseListener.onError(response)
         }
 
         CoroutineScope(exception + Dispatchers.IO).launch {
             val response = block()
             val responseJson = JSONObject(response)
-            onSuccess(responseJson)
+            responseListener.onSuccess(responseJson)
         }
     }
 
-    fun onError(onError: (response: ApiResponse) -> Unit) {
-        onErrorThrowable = onError
+    interface ResponseListener {
+        fun onSuccess(response: JSONObject)
+
+        fun onError(response: ApiResponse) {
+            EventBus.getDefault().post(response)
+        }
     }
 }
