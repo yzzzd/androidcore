@@ -1,6 +1,5 @@
 package com.crocodic.core.base.activity
 
-import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
@@ -13,16 +12,12 @@ import java.lang.reflect.ParameterizedType
 
 abstract class CoreActivity<VB : ViewDataBinding, VM : CoreViewModel>(@LayoutRes private val layoutRes: Int) : NoViewModelActivity<VB>(layoutRes) {
 
-    protected lateinit var viewModel: VM
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+    protected val viewModel: VM by lazy {
         val viewModelClass = (javaClass
             .genericSuperclass as ParameterizedType)
             .actualTypeArguments[1] as Class<VM>
 
-        viewModel = ViewModelProvider(this).get(viewModelClass)
+        ViewModelProvider(this)[viewModelClass]
     }
 
     override fun authRenewToken() {
