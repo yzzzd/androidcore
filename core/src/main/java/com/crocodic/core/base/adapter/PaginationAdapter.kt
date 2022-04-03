@@ -13,21 +13,21 @@ import com.crocodic.core.BR
 /**
  * Dibangun diatas library paging3
  *
- * Cara inisialisasi adapter :
+ * ### Cara inisialisasi adapter :
  * ```
  * val adapter = PaginationAdapter<ItemOrderBinding, Order>(R.layout.item_order).initItem { pos, data ->
  *      // handle onclick disini
  * }
  * ```
  *
- * Untuk mengambil list item didalam adapter :
+ * ### Untuk mengambil list item didalam adapter :
  * ```
  * val orderList = adapter.snapshot()
  *
  * ```
- * Panduan cara penggunaan di dokumentasi berikut [CorePagingSource]
- *
- * Sample app [https://github.com/wahyudotdev/pagination3_sample]
+ * ### Panduan lengkap [CorePagingSource]
+ * ### Menampilkan loading di akhir item [PaginationLoadState]
+ * ### Sample app [https://github.com/wahyudotdev/pagination3_sample]
  */
 open class PaginationAdapter<VB: ViewDataBinding, T: Any>(private val layoutRes: Int) : PagingDataAdapter<T, PaginationAdapter<VB, T>.ItemViewHolder<VB, T>>(DiffUtilCallback()){
 
