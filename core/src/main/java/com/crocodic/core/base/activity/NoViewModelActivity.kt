@@ -298,7 +298,11 @@ abstract class NoViewModelActivity<VB : ViewDataBinding>(@LayoutRes private val 
                             tos(msg)
                         }
                     } else {
-                        loadingDialog.setResponse(msg)
+                        if (apiResponse.isToast){
+                            tos(msg)
+                        } else {
+                            loadingDialog.setResponse(msg)
+                        }
                     }
                 }
             }
