@@ -8,9 +8,18 @@ import org.json.JSONObject
  * Created by @yzzzd on 4/22/18.
  */
 
-class ApiObserver(block: suspend () -> String, dispatcher: CoroutineDispatcher, toast: Boolean = false, responseListener: ResponseListener) {
+class ApiObserver(
+    block: suspend () -> String,
+    dispatcher: CoroutineDispatcher,
+    toast: Boolean = false,
+    responseListener: ResponseListener
+) {
 
-    constructor(block: suspend () -> String, toast: Boolean = false, responseListener: ResponseListener): this(block, Dispatchers.IO, toast, responseListener)
+    constructor(
+        block: suspend () -> String,
+        toast: Boolean = false,
+        responseListener: ResponseListener
+    ) : this(block, Dispatchers.IO, toast, responseListener)
 
     init {
         val exception = CoroutineExceptionHandler { coroutineContext, throwable ->
@@ -31,5 +40,37 @@ class ApiObserver(block: suspend () -> String, dispatcher: CoroutineDispatcher, 
         fun onError(response: ApiResponse) {
             EventBus.getDefault().post(response)
         }
+    }
+}
+
+/**
+ * @param block suspend function
+ * @param dispatcher Default [Dispatchers.IO]
+ * @param toast Default false
+ * @param listener Anonymus class to handle response
+ */
+suspend fun apiObserver(
+    block: suspend () -> String,
+    dispatcher: CoroutineDispatcher = Dispatchers.IO,
+    toast: Boolean = false,
+    listener: ResponseListener
+) {
+    try {
+        val responseJSON = withContext(dispatcher) {
+            val response = block.invoke()
+            JSONObject(response)
+        }
+        listener.onSuccess(responseJSON)
+    } catch (t: Throwable) {
+        val response = ApiResponse(isToast = toast).responseError(t)
+        listener.onError(response)
+    }
+}
+
+interface ResponseListener {
+    suspend fun onSuccess(response: JSONObject)
+
+    suspend fun onError(response: ApiResponse) {
+        EventBus.getDefault().post(response)
     }
 }
