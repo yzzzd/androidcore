@@ -14,7 +14,8 @@ open class ApiResponse(
     var isTokenExpired: Boolean = false,
     var flagView: Int? = null,
     var isToast: Boolean = false,
-    var data: Any? = null
+    var data: Any? = null,
+    var rawResponse: String? = null
 ) {
     fun responseError(error: Throwable? = null, flagView: Int? = null, data: Any? = null): ApiResponse {
         this.status = ApiStatus.ERROR
@@ -22,7 +23,8 @@ open class ApiResponse(
         this.data = data
 
         if (error is HttpException) {
-            error.response()?.errorBody()?.string()?.let { errorBody ->
+            rawResponse = error.response()?.errorBody()?.string()?.trim()
+            rawResponse?.let { errorBody ->
                 message = try {
                     val responseJson = JSONObject(errorBody)
                     responseJson.getString("message")
