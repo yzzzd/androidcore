@@ -11,18 +11,29 @@ import androidx.fragment.app.Fragment
 import com.crocodic.core.helper.ImagePreviewHelper
 import com.crocodic.core.helper.util.ClickPrevention
 
-abstract class CoreFragment<VB : ViewDataBinding>(@LayoutRes private val layoutRes: Int): Fragment(), ClickPrevention {
+abstract class CoreFragment<VB : ViewDataBinding>(@LayoutRes private val layoutRes: Int) :
+    Fragment(), ClickPrevention {
 
-    protected lateinit var binding: VB
+    private var _binding: VB? = null
+    protected val binding get() = _binding!!
 
     open var title: String = ""
     open var hasLoadedOnce = false
 
     val imagePreview by lazy { context?.let { ImagePreviewHelper(it) } }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, layoutRes, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = DataBindingUtil.inflate(inflater, layoutRes, container, false)
         binding.lifecycleOwner = this
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
