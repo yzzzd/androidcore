@@ -44,9 +44,9 @@ android {
 dependencies {
 
     /* Basic Android */
-    api 'androidx.appcompat:appcompat:1.4.1'
-    api 'androidx.core:core-ktx:1.7.0'
-    api 'androidx.constraintlayout:constraintlayout:2.1.3'
+    api 'androidx.appcompat:appcompat:1.4.2'
+    api 'androidx.core:core-ktx:1.8.0'
+    api 'androidx.constraintlayout:constraintlayout:2.1.4'
     api 'androidx.exifinterface:exifinterface:1.3.3'
     api 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
     api 'androidx.security:security-crypto:1.1.0-alpha01'
@@ -59,18 +59,18 @@ dependencies {
     api 'com.jakewharton.timber:timber:5.0.1'
 
     /* Glide */
-    api 'com.github.bumptech.glide:glide:4.12.0'
+    api 'com.github.bumptech.glide:glide:4.13.1'
     kapt 'com.github.bumptech.glide:compiler:4.12.0'
     api ('com.github.bumptech.glide:okhttp3-integration:4.12.0') {
         exclude group: 'glide-parent'
     }
 
     /* Basic Google */
-    api 'com.google.android.material:material:1.5.0'
-    api 'com.google.code.gson:gson:2.8.8'
+    api 'com.google.android.material:material:1.6.1'
+    api 'com.google.code.gson:gson:2.9.0'
 
     /* Location */
-    api 'com.google.android.gms:play-services-location:19.0.1'
+    api 'com.google.android.gms:play-services-location:20.0.0'
     api 'com.google.android.gms:play-services-maps:18.0.2'
     api 'com.google.maps.android:android-maps-utils:1.3.3'
 
@@ -94,7 +94,7 @@ dependencies {
     /* Base64 Crypt */
     api group: 'commons-codec', name: 'commons-codec', version: '1.11'
 
-    testImplementation 'junit:junit:4.+'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
@@ -110,7 +110,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.crocodic-studio'
                 artifactId = 'AndroidCoreProject'
-                version = '4.0.2'
+                version = '4.0.4'
             }
         }
     }
