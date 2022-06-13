@@ -27,7 +27,15 @@ open class ApiResponse(
             rawResponse?.let { errorBody ->
                 message = try {
                     val responseJson = JSONObject(errorBody)
-                    responseJson.getString("message")
+
+                    val status = responseJson.extractInt(ApiCode.STATUS)
+
+                    if (status == ApiCode.EXPIRED) {
+                        val errorMessage = responseJson.extractString(ApiCode.ERROR_MESSAGE)
+                        this.isTokenExpired = errorMessage?.contains(ApiCode.EXPIRED_TOKEN) == true
+                    }
+
+                    responseJson.extractString(ApiCode.MESSAGE)
                 } catch (e: JSONException) {
                     e.printStackTrace()
                     e.message
@@ -70,6 +78,22 @@ open class ApiResponse(
             data as T
         } catch (e: ClassCastException) {
             e.printStackTrace()
+            null
+        }
+    }
+
+    fun JSONObject.extractInt(key: String): Int? {
+        return if (this.has(key)) {
+            this.getInt(key)
+        } else {
+            null
+        }
+    }
+
+    fun JSONObject.extractString(key: String): String? {
+        return if (this.has(key)) {
+            this.getString(key)
+        } else {
             null
         }
     }
