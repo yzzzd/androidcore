@@ -4,11 +4,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.crocodic.core.api.ApiResponse
 import com.crocodic.core.base.activity.CoreActivity
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.receiveAsFlow
 import org.greenrobot.eventbus.EventBus
 
 abstract class CoreViewModel : ViewModel() {
 
-    val apiResponse = MutableLiveData<ApiResponse>()
+    protected val _apiResponse: Channel<ApiResponse> = Channel()
+    val apiResponse = _apiResponse.receiveAsFlow()
 
     abstract fun apiRenewToken()
 
