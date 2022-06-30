@@ -13,33 +13,44 @@ class ApiObserver(block: suspend () -> String, dispatcher: CoroutineDispatcher, 
     constructor(block: suspend () -> String, toast: Boolean = false, responseListener: ResponseListener) : this(block, Dispatchers.IO, toast, responseListener)
 
     init {
-        val exception = CoroutineExceptionHandler { coroutineContext, throwable ->
+        /*val exception = CoroutineExceptionHandler { coroutineContext, throwable ->
             val response = ApiResponse(isToast = toast).responseError(throwable)
             if (response.isTokenExpired) {
                 responseListener.onExpired(response)
             } else {
                 responseListener.onError(response)
             }
-        }
+        }*/
 
-        CoroutineScope(exception + dispatcher).launch {
-            val response = block()
-            val responseJson = JSONObject(response)
-            responseListener.onSuccess(responseJson)
+        CoroutineScope(dispatcher).launch {
+            try {
+                val response = block()
+                val responseJson = JSONObject(response)
+                responseListener.onSuccess(responseJson)
+            } catch (e: Throwable) {
+                val response = ApiResponse(isToast = toast).responseError(e)
+                if (response.isTokenExpired) {
+                    responseListener.onExpired(response)
+                } else {
+                    responseListener.onError(response)
+                }
+            }
         }
     }
 
     interface ResponseListener {
-        fun onSuccess(response: JSONObject)
+        suspend fun onSuccess(response: JSONObject)
 
-        fun onError(response: ApiResponse) {
+        suspend fun onError(response: ApiResponse) {
             EventBus.getDefault().post(response)
         }
 
-        fun onExpired(response: ApiResponse) {
+        suspend fun onExpired(response: ApiResponse) {
             EventBus.getDefault().post(response)
         }
     }
+
+    // TODO: response listener suspend version
 
     companion object {
         /**
