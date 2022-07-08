@@ -53,6 +53,12 @@ open class CoreSession(context: Context) {
         editor?.apply()
     }
 
+    fun setValue(key: String, value: Float) {
+        val editor = pref.edit()
+        editor?.putFloat(key, value)
+        editor?.apply()
+    }
+
     fun getBoolean(key: String): Boolean {
         return pref.getBoolean(key, false)
     }
@@ -63,6 +69,14 @@ open class CoreSession(context: Context) {
 
     fun getInt(key: String): Int {
         return pref.getInt(key, 0)
+    }
+
+    fun getLong(key: String): Long {
+        return pref.getLong(key, 0L)
+    }
+
+    fun getFloat(key: String): Float {
+        return pref.getFloat(key, 0f)
     }
 
     fun clearAll() {
