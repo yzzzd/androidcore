@@ -12,10 +12,22 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.exifinterface.media.ExifInterface
 import com.crocodic.core.R
+import com.crocodic.core.helper.log.Log
 import com.google.gson.GsonBuilder
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import java.io.*
+import java.net.URL
 import java.nio.charset.StandardCharsets
+import java.security.cert.CertificateException
+import java.security.cert.X509Certificate
 import java.util.*
+import javax.net.ssl.HostnameVerifier
+import javax.net.ssl.HttpsURLConnection
+import javax.net.ssl.SSLContext
+import javax.net.ssl.TrustManager
+import javax.net.ssl.X509TrustManager
 
 /**
  * Created by @yzzzd on 4/22/18.
@@ -204,5 +216,58 @@ object BitmapHelper {
         //Render this view (and all of its children) to the given Canvas
         v.draw(c)
         return bitmap
+    }
+
+    fun getBitmapFromUrl(imageUrl: String, result: (Bitmap?) -> Unit) = runBlocking {
+        configureHttps()
+
+        // Log.d("starting download image from $imageUrl")
+        val url = URL(imageUrl)
+
+        withContext(Dispatchers.IO) {
+            try {
+                // Log.d("image dl :: start")
+                val input = url.openStream()
+                BitmapFactory.decodeStream(input)
+            } catch (e: IOException) {
+                e.printStackTrace()
+                // Log.d("image dl :: failed")
+                result(null)
+                null
+            }
+        }?.let { bitmap ->
+            // Log.d("image dl :: success")
+            result(bitmap)
+        }
+    }
+
+    private fun configureHttps() {
+        val ctx = SSLContext.getInstance("TLS")
+        val trustAllCerts = arrayOf<TrustManager>(object : X509TrustManager {
+            override fun getAcceptedIssuers(): Array<X509Certificate?> {
+                return arrayOfNulls(0)
+            }
+
+            @Throws(CertificateException::class)
+            override fun checkServerTrusted(
+                chain: Array<X509Certificate>,
+                authType: String
+            ) {
+            }
+
+            @Throws(CertificateException::class)
+            override fun checkClientTrusted(
+                chain: Array<X509Certificate>,
+                authType: String
+            ) {
+            }
+        })
+        val hostnameVerifier = HostnameVerifier { hostname, session ->
+            true
+        }
+
+        ctx.init(null, trustAllCerts, null)
+        HttpsURLConnection.setDefaultSSLSocketFactory(ctx.socketFactory)
+        HttpsURLConnection.setDefaultHostnameVerifier(hostnameVerifier)
     }
 }
