@@ -9,12 +9,12 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.nuryazid.androidcore"
         minSdk 23
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -46,6 +46,7 @@ android {
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
     }
+    namespace 'com.nuryazid.androidcore'
 }
 
 dependencies {
@@ -57,7 +58,7 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.12.0'
     kapt 'androidx.room:room-compiler:2.4.3'
 
-    testImplementation 'junit:junit:4.+'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }

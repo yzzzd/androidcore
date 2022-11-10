@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         minSdk 23
-        targetSdk 32
+        targetSdk 33
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -37,6 +37,7 @@ android {
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
     }
+    namespace 'com.crocodic.core'
 }
 
 //apply from: '../publish_local.gradle'
@@ -46,7 +47,7 @@ dependencies {
     /* Basic Android */
     api 'androidx.appcompat:appcompat:1.5.1'
     api 'androidx.constraintlayout:constraintlayout:2.1.4'
-    api 'androidx.core:core-ktx:1.8.0'
+    api 'androidx.core:core-ktx:1.9.0'
     api 'androidx.exifinterface:exifinterface:1.3.5'
     api 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
     api 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
@@ -110,7 +111,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.crocodic-studio'
                 artifactId = 'AndroidCoreProject'
-                version = '4.0.6'
+                version = '4.0.7'
             }
         }
     }
