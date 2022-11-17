@@ -99,6 +99,7 @@ fun View.hideSoftKeyboard() {
 }
 
 /* Setup loadmore listener */
+@Deprecated("Use paging3 library and paging source instead")
 fun RecyclerView.initLoadMore(onLoad: (page: Int) -> Unit): EndlessScrollListener {
     val el = object : EndlessScrollListener(this.layoutManager) {
         override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
