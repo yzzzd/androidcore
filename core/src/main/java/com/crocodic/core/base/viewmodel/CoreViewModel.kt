@@ -1,17 +1,18 @@
 package com.crocodic.core.base.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.crocodic.core.api.ApiResponse
 import com.crocodic.core.base.activity.CoreActivity
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import org.greenrobot.eventbus.EventBus
 
 abstract class CoreViewModel : ViewModel() {
 
-    protected val _apiResponse: Channel<ApiResponse> = Channel()
-    val apiResponse = _apiResponse.receiveAsFlow()
+    protected val _apiResponse = MutableSharedFlow<ApiResponse>() // private mutable shared flow
+    val apiResponse = _apiResponse.asSharedFlow() // publicly exposed as read-only shared flow
+
+    protected var apa: String? = null
 
     abstract fun apiRenewToken()
 
