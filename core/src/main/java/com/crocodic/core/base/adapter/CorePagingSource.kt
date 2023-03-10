@@ -3,6 +3,7 @@ package com.crocodic.core.base.adapter
 import androidx.paging.PagingConfig
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.crocodic.core.base.adapter.CorePagingSource.Companion.config
 
 /**
  * Dibangun diatas library paging3

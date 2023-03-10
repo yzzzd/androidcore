@@ -6,9 +6,10 @@ import androidx.databinding.ViewDataBinding
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.crocodic.core.BR
 import com.crocodic.core.R
 import com.crocodic.core.databinding.StateLoadingPaginationBinding
-import com.crocodic.core.BR
+
 /**
  * Paging3 adapter memiliki method :
  *

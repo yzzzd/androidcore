@@ -12,7 +12,6 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.exifinterface.media.ExifInterface
 import com.crocodic.core.R
-import com.crocodic.core.helper.log.Log
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
@@ -23,11 +22,7 @@ import java.nio.charset.StandardCharsets
 import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
 import java.util.*
-import javax.net.ssl.HostnameVerifier
-import javax.net.ssl.HttpsURLConnection
-import javax.net.ssl.SSLContext
-import javax.net.ssl.TrustManager
-import javax.net.ssl.X509TrustManager
+import javax.net.ssl.*
 
 /**
  * Created by @yzzzd on 4/22/18.
