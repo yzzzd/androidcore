@@ -6,6 +6,9 @@ AndroidCore make you get the most rapid development.
 ## Wiki
 To know what's new in this repository, please read our [Wiki](https://github.com/yzzzd/androidcore/wiki)
 
+## Changelog
+Read the [CHANGELOG](https://github.com/crocodic-studio/AndroidCoreProject/blob/main/CHANGELOG.md) to find out what's included in the latest update!
+
 ## Download
 Add it to your build.gradle with:
 ```gradle
