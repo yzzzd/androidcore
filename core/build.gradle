@@ -87,7 +87,11 @@ dependencies {
 
     /* Firebase */
     api platform('com.google.firebase:firebase-bom:29.2.0')
-    api 'com.google.firebase:firebase-analytics-ktx'
+    api ('com.google.firebase:firebase-analytics-ktx') {
+        exclude module: 'play-services-ads-identifier'
+        exclude module: 'play-services-measurement'
+        exclude module: 'play-services-measurement-sdk'
+    }
     api 'com.google.firebase:firebase-messaging-ktx'
     api 'com.google.firebase:firebase-crashlytics-ktx'
     api 'com.google.firebase:firebase-perf-ktx'
@@ -111,7 +115,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.crocodic-studio'
                 artifactId = 'AndroidCoreProject'
-                version = '4.0.7'
+                version = '4.0.7.1'
             }
         }
     }
