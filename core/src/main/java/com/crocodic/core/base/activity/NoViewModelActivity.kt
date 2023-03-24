@@ -154,10 +154,6 @@ abstract class NoViewModelActivity<VB : ViewDataBinding>(@LayoutRes private val 
                 EventBus.getDefault().post(LocationState.LocationFake(isMock))
             }
 
-            override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {
-                //Logg.d(log = "status location change")
-            }
-
             override fun onProviderEnabled(provider: String) {
                 //Logg.d(log = "status location enabled $provider")
                 EventBus.getDefault().post(LocationState.LocationState(true))
