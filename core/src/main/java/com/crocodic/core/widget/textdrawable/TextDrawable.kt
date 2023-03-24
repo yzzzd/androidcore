@@ -91,25 +91,19 @@ class TextDrawable private constructor(builder: Builder) : ShapeDrawable(builder
         val rect = RectF(bounds)
         rect.inset((borderThickness / 2).toFloat(), (borderThickness / 2).toFloat())
 
-        if (shape is OvalShape) {
-            canvas.drawOval(rect, borderPaint)
-        } else if (shape is RoundRectShape) {
-            canvas.drawRoundRect(rect, radius, radius, borderPaint)
-        } else {
-            canvas.drawRect(rect, borderPaint)
+        when (shape) {
+            is OvalShape -> canvas.drawOval(rect, borderPaint)
+            is RoundRectShape -> canvas.drawRoundRect(rect, radius, radius, borderPaint)
+            else -> canvas.drawRect(rect, borderPaint)
         }
     }
 
     override fun setAlpha(alpha: Int) {
-        textPaint.setAlpha(alpha)
+        textPaint.alpha = alpha
     }
 
     override fun setColorFilter(cf: ColorFilter?) {
-        textPaint.setColorFilter(cf)
-    }
-
-    override fun getOpacity(): Int {
-        return PixelFormat.TRANSLUCENT
+        textPaint.colorFilter = cf
     }
 
     override fun getIntrinsicWidth(): Int {
@@ -120,7 +114,7 @@ class TextDrawable private constructor(builder: Builder) : ShapeDrawable(builder
         return height
     }
 
-    class Builder() : IConfigBuilder, IShapeBuilder, IBuilder {
+    class Builder : IConfigBuilder, IShapeBuilder, IBuilder {
 
         var text: String? = null
 
@@ -299,7 +293,7 @@ class TextDrawable private constructor(builder: Builder) : ShapeDrawable(builder
     }
 
     companion object {
-        private val SHADE_FACTOR = 0.9f
+        private const val SHADE_FACTOR = 0.9f
 
         fun builder(): IShapeBuilder {
             return Builder()
