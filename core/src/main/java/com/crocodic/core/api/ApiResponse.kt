@@ -1,5 +1,7 @@
 package com.crocodic.core.api
 
+import com.crocodic.core.extension.extractInt
+import com.crocodic.core.extension.extractString
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.HttpException
@@ -78,22 +80,6 @@ open class ApiResponse(
             data as T
         } catch (e: ClassCastException) {
             e.printStackTrace()
-            null
-        }
-    }
-
-    fun JSONObject.extractInt(key: String): Int? {
-        return if (this.has(key)) {
-            this.getInt(key)
-        } else {
-            null
-        }
-    }
-
-    fun JSONObject.extractString(key: String): String? {
-        return if (this.has(key)) {
-            this.getString(key)
-        } else {
             null
         }
     }
