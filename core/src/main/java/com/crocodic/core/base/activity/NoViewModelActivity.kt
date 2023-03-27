@@ -25,6 +25,7 @@ import androidx.databinding.ViewDataBinding
 import com.crocodic.core.R
 import com.crocodic.core.api.ApiResponse
 import com.crocodic.core.api.ApiStatus
+import com.crocodic.core.api.ModelResponse
 import com.crocodic.core.data.model.LocationState
 import com.crocodic.core.extension.checkEnabledLocation
 import com.crocodic.core.extension.checkLocationPermission
@@ -260,6 +261,20 @@ abstract class NoViewModelActivity<VB : ViewDataBinding>(@LayoutRes private val 
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(apiResponse: ModelResponse) {
+        if (apiResponse.status == ApiStatus.EXPIRED) {
+            if (expiredDialog.isShowing()) {
+                authLogoutSuccess()
+            } else {
+                expiredDialog.show()
+            }
+        } else {
+            expiredDialog.dismiss()
+            disconnect(apiResponse)
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: String) {
         when (event) {
             CoreActivity.Companion.EVENT.RENEW_TOKEN -> expiredDialog.dismiss()
@@ -273,33 +288,40 @@ abstract class NoViewModelActivity<VB : ViewDataBinding>(@LayoutRes private val 
 
     /* when fall from calling api request*/
     open fun disconnect(apiResponse: ApiResponse) {
-        when (apiResponse.status) {
-            ApiStatus.SUCCESS -> {
-                apiResponse.message?.let { msg ->
-                    if (apiResponse.isToast) {
-                        tos(msg)
-                    } else {
-                        loadingDialog.setResponse(msg)
+        apiResponse.message?.let { msg ->
+            if (apiResponse.flagView == 1) {
+                if (stateViewHelper != null) {
+                    stateViewHelper?.showError(msg, false) {
+                        onErrorRetryClick()
                     }
+                } else {
+                    tos(msg)
+                }
+            } else {
+                if (apiResponse.isToast){
+                    tos(msg)
+                } else {
+                    loadingDialog.setResponse(msg)
                 }
             }
-            else -> {
-                apiResponse.message?.let { msg ->
-                    if (apiResponse.flagView == 1) {
-                        if (stateViewHelper != null) {
-                            stateViewHelper?.showError(msg, false) {
-                                onErrorRetryClick()
-                            }
-                        } else {
-                            tos(msg)
-                        }
-                    } else {
-                        if (apiResponse.isToast){
-                            tos(msg)
-                        } else {
-                            loadingDialog.setResponse(msg)
-                        }
+        }
+    }
+
+    open fun disconnect(apiResponse: ModelResponse) {
+        apiResponse.message?.let { msg ->
+            if (apiResponse.flagView == 1) {
+                if (stateViewHelper != null) {
+                    stateViewHelper?.showError(msg, false) {
+                        onErrorRetryClick()
                     }
+                } else {
+                    tos(msg)
+                }
+            } else {
+                if (apiResponse.isToast){
+                    tos(msg)
+                } else {
+                    loadingDialog.setResponse(msg)
                 }
             }
         }
