@@ -28,3 +28,19 @@ inline fun <reified T> JSONArray.toList(gson: Gson): List<T> {
 inline fun <reified T> String.toList(gson: Gson): List<T> {
     return gson.fromJson(this, object : TypeToken<ArrayList<T>?>() {}.type)
 }
+
+fun JSONObject.extractInt(key: String): Int? {
+    return if (this.has(key)) {
+        this.getInt(key)
+    } else {
+        null
+    }
+}
+
+fun JSONObject.extractString(key: String): String? {
+    return if (this.has(key)) {
+        this.getString(key)
+    } else {
+        null
+    }
+}
