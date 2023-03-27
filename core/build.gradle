@@ -57,7 +57,7 @@ dependencies {
     /* Basic Component */
     api 'com.github.stfalcon-studio:StfalconImageViewer:1.0.1'
     api 'com.github.tapadoo:alerter:7.1.0'
-    // api 'com.jakewharton.timber:timber:5.0.1'
+    api 'com.jakewharton.timber:timber:5.0.1'
     api 'id.zelory:compressor:3.0.1'
     api 'org.greenrobot:eventbus:3.2.0'
 
@@ -117,7 +117,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.crocodic-studio'
                 artifactId = 'AndroidCoreProject'
-                version = '4.0.8'
+                version = '4.0.9'
             }
         }
     }
