@@ -118,6 +118,7 @@ fun AppCompatActivity.setFullScreen(isStable: Boolean = false) {
 }
 
 /* check some permission has been granted */
+@Deprecated("Use PermissionHelper.hasPermission instead")
 fun Activity.allPermissionsGranted(permission: Array<String>): Boolean {
     permission.forEach {
         if (ContextCompat.checkSelfPermission(baseContext, it) != PackageManager.PERMISSION_GRANTED) {
