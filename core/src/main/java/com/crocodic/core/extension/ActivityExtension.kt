@@ -2,6 +2,7 @@ package com.crocodic.core.extension
 
 import android.Manifest
 import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.IntentSender
@@ -9,20 +10,25 @@ import android.content.pm.PackageManager
 import android.graphics.Typeface
 import android.net.Uri
 import android.os.Build
+import android.os.Environment
+import android.provider.MediaStore
 import android.view.*
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.core.util.Pair
 import androidx.core.view.WindowCompat
 import com.crocodic.core.R
 import com.crocodic.core.base.activity.NoViewModelActivity
+import com.crocodic.core.data.Const
 import com.crocodic.core.databinding.CrSnackbarBinding
-import com.crocodic.core.model.AppNotification
+import com.crocodic.core.data.model.AppNotification
 import com.crocodic.core.ui.permission.CameraPermissionActivity
 import com.crocodic.core.ui.permission.LocationPermissionActivity
 import com.google.android.gms.common.api.ApiException
@@ -32,6 +38,10 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.LocationSettingsRequest
 import com.google.android.gms.location.LocationSettingsStatusCodes
 import com.tapadoo.alerter.Alerter
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
+import java.io.IOException
 
 /**
  * Created by @yzzzd on 4/22/18.
@@ -119,9 +129,9 @@ fun AppCompatActivity.setFullScreen(isStable: Boolean = false) {
 
 /* check some permission has been granted */
 @Deprecated("Use PermissionHelper.hasPermission instead")
-fun Activity.allPermissionsGranted(permission: Array<String>): Boolean {
+fun Context.allPermissionsGranted(permission: Array<String>): Boolean {
     permission.forEach {
-        if (ContextCompat.checkSelfPermission(baseContext, it) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED) {
             return false
         }
     }
@@ -207,7 +217,7 @@ fun Activity.checkEnabledLocation(launcher: ActivityResultLauncher<IntentSenderR
 }
 
 /* open the google maps app */
-fun Activity.openMap() {
+fun Context.openMap() {
     try {
         packageManager.getLaunchIntentForPackage("com.google.android.apps.maps")?.let {
             startActivity(it)
@@ -218,7 +228,7 @@ fun Activity.openMap() {
 }
 
 /* Open the dial activity */
-fun Activity.openDial(phone: String) {
+fun Context.openDial(phone: String) {
     startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:${phone}")))
 }
 
@@ -248,4 +258,76 @@ fun Activity.notify(appNotification: AppNotification, sound: Uri? = null, titleF
             }
         }
         .show()
+}
+
+fun NoViewModelActivity.BetterActivityResult<Intent, ActivityResult>.openGallery(context: Context, result: (File?, Exception?) -> Unit) {
+    val galleyIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+
+    launch(galleyIntent) {
+        if (it.resultCode == Activity.RESULT_OK) {
+            val imgUri = it.data?.data
+
+            if (imgUri != null) {
+                val parcelFileDescriptor = context.contentResolver.openFileDescriptor(imgUri, "r")
+                val fileDescriptor = parcelFileDescriptor?.fileDescriptor
+                val inputStream = FileInputStream(fileDescriptor)
+
+                // val fileName = "JPEG_FRIEND_.jpg"
+                // val primaryStorage = ContextCompat.getExternalFilesDirs(this@ProfileActivity, null)[0]
+                // val outputFile = File(primaryStorage, fileName)
+                val outputFile = context.createImageFile()
+                val outputStream = FileOutputStream(outputFile)
+
+                inputStream.use { input ->
+                    outputStream.use { output ->
+                        input.copyTo(output)
+                    }
+                }
+
+                parcelFileDescriptor?.close()
+
+                result(outputFile, null)
+            } else {
+                result(null, Exception())
+            }
+
+        } else {
+            result(null, Exception())
+        }
+    }
+}
+
+fun NoViewModelActivity.BetterActivityResult<Intent, ActivityResult>.openCamera(context: Context, authority: String = "${context.packageName}.${Const.ACTIVITY.FILE_PROVIDER}", result: (File?, Exception?) -> Unit) {
+    val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+
+    val photoFile = try {
+        context.createImageFile()
+    } catch (e: IOException) {
+        // Error occurred while creating the File
+        result(null, e)
+        null
+    } ?: return
+
+    val photoURI = FileProvider.getUriForFile(context, authority, photoFile)
+    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+
+    try {
+        launch(cameraIntent) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                result(photoFile, null)
+            } else {
+                result(null, Exception())
+            }
+        }
+    } catch (e: ActivityNotFoundException) {
+        result(null, e)
+        e.printStackTrace()
+    }
+}
+
+@Throws(IOException::class)
+fun Context.createImageFile(prefix: String = "JPEG_", suffix: String = ".jpg"): File {
+    // Create an image file name
+    val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+    return File.createTempFile(prefix, suffix, storageDir)
 }
