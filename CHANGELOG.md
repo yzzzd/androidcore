@@ -1,5 +1,39 @@
 # Change Log
 
+Version 4.0.10 *(2023-06)*
+----------------------------
+* Add permission helper and context extension
+* Add function to provide okhttp client and api service
+  ```kotlin
+  val okHttpClient = NetworkHelper.provideOkHttpClient()
+  
+  val apiService = NetworkHelper.provideApiService<ApiService>(
+    baseUrl = BuildConfig.BASE_URL,
+    okHttpClient = okHttpClient,
+    converterFactory = listOf(GsonConverterFactory.create())
+  )
+  ```
+
+* Add function extension to open camera and gallery directly from activity launcher
+  ```kotlin
+  activityLauncher.openCamera(context) { file, exception ->
+     // file is nullable (File?)
+     // will contain photo that take with camera
+     // if operation failed then you will get file == null and return the exception
+  }
+  ```
+  
+  **NOTE!** that ```openCamera()``` function have a parameter ```authority``` with default value is ```packageName.fileprovider```
+  so you need to add a FileProvider Content Provider to the manifest file. The ```@xml/file_paths``` also need to add separately in the resources directory.
+  
+  ```kotlin
+  activityLauncher.openGallery(context) { file, exception ->
+     // file is nullable (File?)
+     // will contain photo that take with camera
+     // if operation failed then you will get file == null and return the exception
+  }
+  ```
+  
 Version 4.0.9 *(2023-03)*
 ----------------------------
 * Bump version & exclude firebase ads dependencies
