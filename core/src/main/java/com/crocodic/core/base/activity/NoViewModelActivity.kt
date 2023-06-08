@@ -33,7 +33,7 @@ import com.crocodic.core.extension.notify
 import com.crocodic.core.extension.tos
 import com.crocodic.core.helper.StateViewHelper
 import com.crocodic.core.helper.util.ClickPrevention
-import com.crocodic.core.model.AppNotification
+import com.crocodic.core.data.model.AppNotification
 import com.crocodic.core.ui.dialog.ExpiredDialog
 import com.crocodic.core.ui.dialog.InformationDialog
 import com.crocodic.core.ui.dialog.LoadingDialog

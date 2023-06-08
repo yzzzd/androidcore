@@ -1,4 +1,4 @@
-package com.crocodic.core.model
+package com.crocodic.core.data.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

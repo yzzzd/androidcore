@@ -1,6 +1,5 @@
 package com.crocodic.core.extension
 
-import android.app.Activity
 import android.app.NotificationManager
 import android.content.ContentResolver
 import android.content.Context
@@ -10,22 +9,22 @@ import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
 import androidx.core.content.pm.ShortcutManagerCompat
-import com.crocodic.core.model.AppNotification
+import com.crocodic.core.data.model.AppNotification
 import org.greenrobot.eventbus.EventBus
 
 /**
  * Created by @yzzzd on 4/22/18.
  */
 
-/* clear all pendign notification which not yet opened */
-fun Activity.clearNotification() {
+/* clear all pending notification which not yet opened */
+fun Context.clearNotification() {
     val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     notificationManager.cancelAll()
     ShortcutManagerCompat.removeAllDynamicShortcuts(this)
 }
 
 /* play notification sound */
-fun Activity.playSound(uriSound: Uri?) {
+fun Context.playSound(uriSound: Uri?) {
     try {
         val uri = uriSound?:Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + packageName + "/raw/beep")
         val r = RingtoneManager.getRingtone(this, uri)
@@ -36,7 +35,7 @@ fun Activity.playSound(uriSound: Uri?) {
 }
 
 /* bzzz make some vibrate */
-fun Activity.playVibrate(ms: Long) {
+fun Context.playVibrate(ms: Long) {
     val v = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
