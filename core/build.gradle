@@ -47,7 +47,7 @@ dependencies {
     /* Basic Android */
     api 'androidx.appcompat:appcompat:1.6.1'
     api 'androidx.constraintlayout:constraintlayout:2.1.4'
-    api 'androidx.core:core-ktx:1.9.0'
+    api 'androidx.core:core-ktx:1.10.1'
     api 'androidx.exifinterface:exifinterface:1.3.6'
     api 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
     api 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
@@ -59,7 +59,7 @@ dependencies {
     api 'com.github.tapadoo:alerter:7.1.0'
     api 'com.jakewharton.timber:timber:5.0.1'
     api 'id.zelory:compressor:3.0.1'
-    api 'org.greenrobot:eventbus:3.2.0'
+    api 'org.greenrobot:eventbus:3.3.1'
 
     /* Glide */
     api 'com.github.bumptech.glide:glide:4.13.2'
@@ -69,7 +69,7 @@ dependencies {
     }
 
     /* Basic Google */
-    api 'com.google.android.material:material:1.8.0'
+    api 'com.google.android.material:material:1.9.0'
     api 'com.google.code.gson:gson:2.10.1'
 
     /* Location */
@@ -117,7 +117,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.crocodic-studio'
                 artifactId = 'AndroidCoreProject'
-                version = '4.0.9'
+                version = '4.0.10'
             }
         }
     }
