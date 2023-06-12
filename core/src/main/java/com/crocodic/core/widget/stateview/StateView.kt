@@ -7,6 +7,7 @@ import android.util.ArrayMap
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
+import com.crocodic.core.extension.parcelable
 
 class StateView : FrameLayout{
 
@@ -40,7 +41,7 @@ class StateView : FrameLayout{
         var bundle = state
         if (state is Bundle) {
             if (mState == null) restoreInstanceState(state)
-            bundle = state.getParcelable<Bundle>(SAVED_INSTANCE_STATE)
+            bundle = state.parcelable<Bundle>(SAVED_INSTANCE_STATE)
         }
         super.onRestoreInstanceState(bundle)
     }
