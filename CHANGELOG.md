@@ -3,6 +3,11 @@
 Version 4.0.10 *(2023-06)*
 ----------------------------
 * Add permission helper and context extension
+* Add parcelable extension
+  ```kotlin
+  val model: Model = intent.parcelable<Model>(KEY)
+  val model: Model = bundle.parcelable<Model>(KEY)
+  ```
 * Add function to provide okhttp client and api service
   ```kotlin
   val okHttpClient = NetworkHelper.provideOkHttpClient()
