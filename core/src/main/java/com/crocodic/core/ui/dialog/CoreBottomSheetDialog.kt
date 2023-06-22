@@ -47,6 +47,9 @@ abstract class CoreBottomSheetDialog<VB : ViewBinding>(val context: Context, lif
         }
     }
 
+    /**
+     * Override this function to change the dialog to close when the Lifecycle reaches a certain state default `Lifecycle.Event.ON_DESTROY`
+     */
     protected open fun onStateDialogDismiss(): Lifecycle.Event {
         return Lifecycle.Event.ON_DESTROY
     }
