@@ -59,7 +59,7 @@ class CameraPermissionActivity : AppCompatActivity(), ClickPrevention {
             if (allPermissionsGranted(REQUIRED_PERMISSIONS_CAMERA)) {
                 finish()
             } else {
-                PermissionSettingDialog(this)
+                PermissionSettingDialog(this, this)
                     .setContent(R.drawable.img_grant_camera, R.string.cr_info_permission_camera)
                     .onButtonClick {
                         it.dismiss()

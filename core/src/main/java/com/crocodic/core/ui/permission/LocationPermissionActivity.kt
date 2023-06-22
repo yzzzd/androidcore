@@ -58,7 +58,7 @@ class LocationPermissionActivity : AppCompatActivity(), ClickPrevention {
             }
         }
         if (denied) {
-            PermissionSettingDialog(this)
+            PermissionSettingDialog(this, this)
                 .setContent(R.drawable.img_grant_location, R.string.cr_info_permission_location)
                 .onButtonClick {
                     it.dismiss()

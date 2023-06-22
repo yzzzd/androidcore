@@ -2,6 +2,9 @@ package com.crocodic.core.ui.dialog
 
 import android.content.Context
 import androidx.annotation.StringRes
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.viewbinding.ViewBinding
 import com.crocodic.core.R
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -10,7 +13,12 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
  * Created by @yzzzd on 4/22/18.
  */
 
-abstract class CoreBottomSheetDialog<VB : ViewBinding>(val context: Context) {
+/**
+ * @param context
+ * @param lifecycleOwner jika di dalam activity gunakan `this` keyword dan
+ *                        jika di dalam fragment bisa menggunakan `this`, `requireActivity`, dan `viewLifecycleOwner` (recommended)
+ */
+abstract class CoreBottomSheetDialog<VB : ViewBinding>(val context: Context, lifecycleOwner: LifecycleOwner) {
 
     protected var binding: VB
     protected var dialog: BottomSheetDialog = BottomSheetDialog(context, R.style.BottomSheetDialog)
@@ -20,6 +28,27 @@ abstract class CoreBottomSheetDialog<VB : ViewBinding>(val context: Context) {
     init {
         binding = this.getViewBinding()
         dialog.setContentView(binding.root)
+
+        val observer = LifecycleEventObserver { _, event ->
+            when (event) {
+                onStateDialogDismiss() -> {
+                    dialog.dismiss()
+                }
+                else -> {}
+            }
+        }
+
+        dialog.setOnShowListener {
+            lifecycleOwner.lifecycle.addObserver(observer)
+        }
+
+        dialog.setOnDismissListener {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+        }
+    }
+
+    protected open fun onStateDialogDismiss(): Lifecycle.Event {
+        return Lifecycle.Event.ON_DESTROY
     }
 
     fun onDismiss(onDismiss: () -> Unit): CoreBottomSheetDialog<VB> {

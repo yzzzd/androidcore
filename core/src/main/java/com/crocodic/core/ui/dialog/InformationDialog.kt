@@ -5,13 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.lifecycle.LifecycleOwner
 import com.crocodic.core.databinding.CrDialogInformationBinding
 
 /**
  * Created by @yzzzd on 4/22/18.
  */
 
-class InformationDialog(context: Context): CoreBottomSheetDialog<CrDialogInformationBinding>(context) {
+class InformationDialog(context: Context, lifecycleOwner: LifecycleOwner): CoreBottomSheetDialog<CrDialogInformationBinding>(context, lifecycleOwner) {
 
     override fun getViewBinding() = CrDialogInformationBinding.inflate(LayoutInflater.from(context))
 

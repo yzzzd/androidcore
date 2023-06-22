@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.lifecycle.LifecycleOwner
 import com.crocodic.core.R
 import com.crocodic.core.databinding.CrDialogLoadingBinding
 
@@ -12,7 +13,7 @@ import com.crocodic.core.databinding.CrDialogLoadingBinding
  * Created by @yzzzd on 4/22/18.
  */
 
-class LoadingDialog(context: Context): CoreBottomSheetDialog<CrDialogLoadingBinding>(context) {
+class LoadingDialog(context: Context, lifecycleOwner: LifecycleOwner): CoreBottomSheetDialog<CrDialogLoadingBinding>(context, lifecycleOwner) {
 
     override fun getViewBinding() = CrDialogLoadingBinding.inflate(LayoutInflater.from(context))
 

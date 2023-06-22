@@ -3,13 +3,18 @@ package com.crocodic.core.ui.dialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
+import androidx.lifecycle.LifecycleOwner
 import com.crocodic.core.databinding.CrDialogExpiredBinding
 
 /**
  * Created by @yzzzd on 4/22/18.
  */
 
-class ExpiredDialog(context: Context, onButtonClick: (positive: Boolean, dialog: ExpiredDialog) -> Unit) : CoreBottomSheetDialog<CrDialogExpiredBinding>(context) {
+class ExpiredDialog(
+    context: Context,
+    lifecycleOwner: LifecycleOwner,
+    onButtonClick: (positive: Boolean, dialog: ExpiredDialog) -> Unit
+) : CoreBottomSheetDialog<CrDialogExpiredBinding>(context, lifecycleOwner) {
 
     override fun getViewBinding() = CrDialogExpiredBinding.inflate(LayoutInflater.from(context))
 

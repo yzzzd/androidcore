@@ -4,13 +4,18 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.StringRes
+import androidx.lifecycle.LifecycleOwner
 import com.crocodic.core.databinding.CrDialogAlertBinding
 
 /**
  * Created by @yzzzd on 4/22/18.
  */
 
-class AlertDialog(context: Context, onButtonClick: (positive: Boolean, dialog: AlertDialog) -> Unit) : CoreBottomSheetDialog<CrDialogAlertBinding>(context) {
+class AlertDialog(
+    context: Context,
+    lifecycleOwner: LifecycleOwner,
+    onButtonClick: (positive: Boolean, dialog: AlertDialog) -> Unit
+) : CoreBottomSheetDialog<CrDialogAlertBinding>(context, lifecycleOwner) {
 
     override fun getViewBinding() = CrDialogAlertBinding.inflate(LayoutInflater.from(context))
 
