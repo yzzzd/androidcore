@@ -10,7 +10,7 @@ import com.crocodic.core.databinding.CrDialogAlertBinding
  * Created by @yzzzd on 4/22/18.
  */
 
-class AlertDialog(context: Context, onButtonClick: (positive: Boolean, dialog: AlertDialog) -> Unit) : CoreDialog<CrDialogAlertBinding>(context) {
+class AlertDialog(context: Context, onButtonClick: (positive: Boolean, dialog: AlertDialog) -> Unit) : CoreBottomSheetDialog<CrDialogAlertBinding>(context) {
 
     override fun getViewBinding() = CrDialogAlertBinding.inflate(LayoutInflater.from(context))
 

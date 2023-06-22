@@ -12,7 +12,7 @@ import com.crocodic.core.databinding.CrDialogLoadingBinding
  * Created by @yzzzd on 4/22/18.
  */
 
-class LoadingDialog(context: Context): CoreDialog<CrDialogLoadingBinding>(context) {
+class LoadingDialog(context: Context): CoreBottomSheetDialog<CrDialogLoadingBinding>(context) {
 
     override fun getViewBinding() = CrDialogLoadingBinding.inflate(LayoutInflater.from(context))
 

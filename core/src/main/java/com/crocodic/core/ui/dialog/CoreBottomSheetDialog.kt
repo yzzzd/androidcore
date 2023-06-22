@@ -10,7 +10,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
  * Created by @yzzzd on 4/22/18.
  */
 
-abstract class CoreDialog<VB : ViewBinding>(val context: Context) {
+abstract class CoreBottomSheetDialog<VB : ViewBinding>(val context: Context) {
 
     protected var binding: VB
     protected var dialog: BottomSheetDialog = BottomSheetDialog(context, R.style.BottomSheetDialog)
@@ -22,7 +22,7 @@ abstract class CoreDialog<VB : ViewBinding>(val context: Context) {
         dialog.setContentView(binding.root)
     }
 
-    fun onDismiss(onDismiss: () -> Unit): CoreDialog<VB> {
+    fun onDismiss(onDismiss: () -> Unit): CoreBottomSheetDialog<VB> {
         dialog.setOnDismissListener {
             onDismiss()
         }
@@ -33,19 +33,19 @@ abstract class CoreDialog<VB : ViewBinding>(val context: Context) {
         return context.getString(res)
     }
 
-    open fun show(): CoreDialog<VB> {
+    open fun show(): CoreBottomSheetDialog<VB> {
         dialog.show()
         return this
     }
 
-    fun setCancelable(cancelable: Boolean): CoreDialog<VB> {
+    fun setCancelable(cancelable: Boolean): CoreBottomSheetDialog<VB> {
         dialog.setCancelable(cancelable)
         return this
     }
 
     fun isShowing() = dialog.isShowing
 
-    open fun dismiss(): CoreDialog<VB> {
+    open fun dismiss(): CoreBottomSheetDialog<VB> {
         if (dialog.isShowing) {
             dialog.dismiss()
         }

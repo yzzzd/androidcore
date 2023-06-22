@@ -11,7 +11,7 @@ import com.crocodic.core.databinding.CrDialogInformationBinding
  * Created by @yzzzd on 4/22/18.
  */
 
-class InformationDialog(context: Context): CoreDialog<CrDialogInformationBinding>(context) {
+class InformationDialog(context: Context): CoreBottomSheetDialog<CrDialogInformationBinding>(context) {
 
     override fun getViewBinding() = CrDialogInformationBinding.inflate(LayoutInflater.from(context))
 

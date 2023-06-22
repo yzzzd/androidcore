@@ -9,7 +9,7 @@ import com.crocodic.core.databinding.CrDialogPermissionSettingBinding
  * Created by @yzzzd on 4/22/18.
  */
 
-class PermissionSettingDialog(context: Context): CoreDialog<CrDialogPermissionSettingBinding>(context) {
+class PermissionSettingDialog(context: Context): CoreBottomSheetDialog<CrDialogPermissionSettingBinding>(context) {
 
     override fun getViewBinding() = CrDialogPermissionSettingBinding.inflate(LayoutInflater.from(context))
 
