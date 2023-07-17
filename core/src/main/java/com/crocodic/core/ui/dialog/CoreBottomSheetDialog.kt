@@ -6,26 +6,28 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.viewbinding.ViewBinding
+import com.crocodic.core.R
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 /**
- * Gunakan [CoreBottomSheetDialog] untuk membuat bottom sheet.
- *
+ * Created by @yzzzd on 4/22/18.
+ */
+
+/**
  * @param context
  * @param lifecycleOwner jika di dalam activity gunakan `this` keyword dan
  *                        jika di dalam fragment bisa menggunakan `this`, `requireActivity`, dan `viewLifecycleOwner` (recommended)
  */
-abstract class CoreDialog<VB : ViewBinding>(val context: Context, lifecycleOwner: LifecycleOwner) {
+abstract class CoreBottomSheetDialog<VB : ViewBinding>(val context: Context, lifecycleOwner: LifecycleOwner) {
 
     protected var binding: VB
-    protected var dialog: androidx.appcompat.app.AlertDialog
+    protected var dialog: BottomSheetDialog = BottomSheetDialog(context, R.style.BottomSheetDialog)
 
     protected abstract fun getViewBinding(): VB
 
     init {
         binding = this.getViewBinding()
-        dialog = androidx.appcompat.app.AlertDialog.Builder(context)
-            .setView(binding.root)
-            .create()
+        dialog.setContentView(binding.root)
 
         val observer = LifecycleEventObserver { _, event ->
             when (event) {
@@ -52,7 +54,7 @@ abstract class CoreDialog<VB : ViewBinding>(val context: Context, lifecycleOwner
         return Lifecycle.Event.ON_DESTROY
     }
 
-    fun onDismiss(onDismiss: () -> Unit): CoreDialog<VB> {
+    fun onDismiss(onDismiss: () -> Unit): CoreBottomSheetDialog<VB> {
         dialog.setOnDismissListener {
             onDismiss()
         }
@@ -63,19 +65,19 @@ abstract class CoreDialog<VB : ViewBinding>(val context: Context, lifecycleOwner
         return context.getString(res)
     }
 
-    open fun show(): CoreDialog<VB> {
+    open fun show(): CoreBottomSheetDialog<VB> {
         dialog.show()
         return this
     }
 
-    fun setCancelable(cancelable: Boolean): CoreDialog<VB> {
+    fun setCancelable(cancelable: Boolean): CoreBottomSheetDialog<VB> {
         dialog.setCancelable(cancelable)
         return this
     }
 
     fun isShowing() = dialog.isShowing
 
-    open fun dismiss(): CoreDialog<VB> {
+    open fun dismiss(): CoreBottomSheetDialog<VB> {
         if (dialog.isShowing) {
             dialog.dismiss()
         }

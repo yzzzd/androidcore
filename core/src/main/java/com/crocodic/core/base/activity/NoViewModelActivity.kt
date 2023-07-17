@@ -50,16 +50,16 @@ abstract class NoViewModelActivity<VB : ViewDataBinding>(@LayoutRes private val 
 
     protected lateinit var binding: VB
 
-    protected val loadingDialog by lazy { LoadingDialog(this) }
+    protected val loadingDialog by lazy { LoadingDialog(this, this) }
 
-    protected val informationDialog by lazy { InformationDialog(this) }
+    protected val informationDialog by lazy { InformationDialog(this, this) }
 
     protected var inAppNotification = true
 
     protected var stateViewHelper: StateViewHelper? = null
 
     protected val expiredDialog by lazy {
-        ExpiredDialog(this) { positive, dialog ->
+        ExpiredDialog(this, this) { positive, dialog ->
             dialog.setLoading()
             if (positive) {
                 authRenewToken()

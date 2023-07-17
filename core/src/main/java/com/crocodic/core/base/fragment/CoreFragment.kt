@@ -10,6 +10,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.crocodic.core.helper.ImagePreviewHelper
 import com.crocodic.core.helper.util.ClickPrevention
+import com.crocodic.core.ui.dialog.LoadingDialog
 
 abstract class CoreFragment<VB : ViewDataBinding>(@LayoutRes private val layoutRes: Int) : Fragment(), ClickPrevention {
 
@@ -19,6 +20,11 @@ abstract class CoreFragment<VB : ViewDataBinding>(@LayoutRes private val layoutR
     open var hasLoadedOnce = false
 
     val imagePreview by lazy { context?.let { ImagePreviewHelper(it) } }
+
+    /**
+     * LoadingDialog will automatically dismiss when state for this fragment reach onDestroyView.
+     */
+    protected val loadingDialog by lazy { context?.let { ctx -> LoadingDialog(ctx, viewLifecycleOwner) } }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, layoutRes, container, false)
