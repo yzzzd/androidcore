@@ -1,5 +1,18 @@
 # Change Log
 
+Version 4.0.11 *(2023-07)*
+----------------------------
+* Update AGP and bump version library
+* Lifecycle aware for Core Dialog
+* Add function extension to browse file directly from activity launcher
+  ```kotlin
+  activityLauncher.openFile(context, "*/*") { file, exception ->
+     // file is nullable (File?)
+     // will contain file that user choose
+     // if operation failed then you will get file == null and return the exception
+  }
+  ```
+
 Version 4.0.10 *(2023-06)*
 ----------------------------
 * Add permission helper and context extension
