@@ -44,7 +44,9 @@ android {
         dataBinding true
     }
     packagingOptions {
-        exclude 'META-INF/DEPENDENCIES'
+        resources {
+            excludes += ['META-INF/DEPENDENCIES']
+        }
     }
     namespace 'com.nuryazid.androidcore'
 }
