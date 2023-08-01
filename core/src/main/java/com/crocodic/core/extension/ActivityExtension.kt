@@ -263,13 +263,13 @@ fun Activity.notify(appNotification: AppNotification, sound: Uri? = null, titleF
 }
 
 fun NoViewModelActivity.BetterActivityResult<Intent, ActivityResult>.openGallery(context: Context, result: (File?, Exception?) -> Unit) {
-    val galleyIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+    val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
 
-    launch(galleyIntent) {
+    launch(galleryIntent) {
         if (it.resultCode == Activity.RESULT_OK) {
             val imgUri = it.data?.data
 
-            if (imgUri != null) {
+            /*if (imgUri != null) {
                 val parcelFileDescriptor = context.contentResolver.openFileDescriptor(imgUri, "r")
                 val fileDescriptor = parcelFileDescriptor?.fileDescriptor
                 val inputStream = FileInputStream(fileDescriptor)
@@ -286,8 +286,9 @@ fun NoViewModelActivity.BetterActivityResult<Intent, ActivityResult>.openGallery
                     }
                 }
 
-                parcelFileDescriptor?.close()
-
+                parcelFileDescriptor?.close()*/
+            if (imgUri != null) {
+                val outputFile = context.uriToFile(imgUri)
                 result(outputFile, null)
             } else {
                 result(null, Exception())
@@ -324,6 +325,28 @@ fun NoViewModelActivity.BetterActivityResult<Intent, ActivityResult>.openCamera(
     } catch (e: ActivityNotFoundException) {
         result(null, e)
         e.printStackTrace()
+    }
+}
+
+fun NoViewModelActivity.BetterActivityResult<Intent, ActivityResult>.openFile(context: Context, fileType: String = "*/*", result: (File?, Exception?) -> Unit) {
+    val fileIntent = Intent(Intent.ACTION_GET_CONTENT).apply {
+        type = fileType
+    }
+
+    launch(fileIntent) {
+        if (it.resultCode == Activity.RESULT_OK) {
+            val fileUri = it.data?.data
+
+            if (fileUri != null) {
+                val outputFile = context.uriToFile(fileUri, Environment.DIRECTORY_DOCUMENTS)
+                result(outputFile, null)
+            } else {
+                result(null, Exception())
+            }
+
+        } else {
+            result(null, Exception())
+        }
     }
 }
 
