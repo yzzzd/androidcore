@@ -3,13 +3,14 @@ package com.crocodic.core.ui.dialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
+import androidx.lifecycle.LifecycleOwner
 import com.crocodic.core.databinding.CrDialogPermissionSettingBinding
 
 /**
  * Created by @yzzzd on 4/22/18.
  */
 
-class PermissionSettingDialog(context: Context): CoreDialog<CrDialogPermissionSettingBinding>(context) {
+class PermissionSettingDialog(context: Context, lifecycleOwner: LifecycleOwner): CoreBottomSheetDialog<CrDialogPermissionSettingBinding>(context, lifecycleOwner) {
 
     override fun getViewBinding() = CrDialogPermissionSettingBinding.inflate(LayoutInflater.from(context))
 
