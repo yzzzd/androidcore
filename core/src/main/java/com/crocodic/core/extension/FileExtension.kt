@@ -17,7 +17,7 @@ suspend fun File.compress(context: Context, prefWidth: Int, prefHeight: Int, pre
     return Compressor.compress(context, this) {
         resolution(prefWidth, prefHeight)
         quality(100)
-        format(Bitmap.CompressFormat.WEBP_LOSSLESS)
+        format(Bitmap.CompressFormat.JPEG)
         size(prefSize)
     }
 }
