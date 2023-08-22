@@ -77,7 +77,7 @@ open class ApiResponse(
 
     inline fun <reified T> dataAs(): T? {
         return try {
-            data as T
+            data as? T
         } catch (e: ClassCastException) {
             e.printStackTrace()
             null
